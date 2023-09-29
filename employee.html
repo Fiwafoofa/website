@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <header>
+        <h1>P Tracker</h1>
+        <hr />
+    </header>
+    <main>
+
+        <div id="searchTask">
+            <h2>Search Task</h2>
+            <form method="get" action="manager_dashboard.html">
+                <input type="search" id="username" placeholder="Order ID" />
+                <button type="submit">Search</button>
+            </form>
+
+
+            <!-- TODO Display New Window -->
+            <div class="overlay" id="divOne">
+                <div class="wrapper"> 
+                    <h2>Order Details</h2>
+                    <a href="#" class="close">&times;</a>  
+                    <div class="container">
+                        <!-- MIGHT CHANGE TO JUST TEXT -->
+                        <form>
+                            <label>Order ID:</label>
+                            <input readonly type="text" placeholder="Order ID">
+                            <label>Batch Number:</label>
+                            <input readonly type="text" placeholder="Batch Number">
+                            <label>Product Name:</label>
+                            <input readonly type="text" placeholder="Product Name">
+                            <label>Due Date:</label>
+                            <input readonly type="datetime-local" name="varDatetime" id="datetime" />
+                            <label>Customer:</label>
+                            <input readonly type="text" placeholder="Customer">
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    
+        <hr>
+
+        <div id="upcomingTasks">
+            <h2>Upcoming</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Product</th>
+                        <th>Last Updated</th>
+                        <th>Created</th>
+                        <th>
+                            <form>
+                                <label for="select">Date</label>
+                                <select id="select" name="varSelect">
+                                    <option selected>Today</option>
+                                    <option>Past Week</option>
+                                    <option>Past Month</option>
+                                    <option>Past 3 Months</option>
+                                </select>
+                            </form>
+                        </th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>safe#ab12</td>
+                        <td>Stainless Steel Safe</td>
+                        <td>08/12/23 14:23:06</td>
+                        <td>08/10/23 14:23:06</td>
+                        <td>Details</td>
+                    </tr>
+                    <tr>
+                        <td>chair#cd34</td>
+                        <td>Stainless Steel Chair :P</td>
+                        <td>08/12/23 14:23:06</td>
+                        <td>08/10/23 14:23:06</td>
+                        <td>Details</td>
+                    </tr>
+                    <tr>
+                        <td>plate#ef45</td>
+                        <td>Stainless Steel Plate</td>
+                        <td>08/12/23 14:23:06</td>
+                        <td>08/10/23 14:23:06</td>
+                        <td>Details</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+
+        <hr>
+
+        <div id="historyTasks">
+            <h2>History</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Product</th>
+                        <th>Last Updated</th>
+                        <th>Created</th>
+                        <th>
+                            <form>
+                                <label for="select">Date</label>
+                                <select id="select" name="varSelect">
+                                    <option selected>Today</option>
+                                    <option>Past Week</option>
+                                    <option>Past Month</option>
+                                    <option>Past 3 Months</option>
+                                </select>
+                            </form>
+                        </th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>safe#ab12</td>
+                        <td>Stainless Steel Safe</td>
+                        <td>08/12/23 14:23:06</td>
+                        <td>08/10/23 14:23:06</td>
+                        <td>Details</td>
+                    </tr>
+                    <tr>
+                        <td>chair#cd34</td>
+                        <td>Stainless Steel Chair :P</td>
+                        <td>08/12/23 14:23:06</td>
+                        <td>08/10/23 14:23:06</td>
+                        <td>Details</td>
+                    </tr>
+                    <tr>
+                        <td>plate#ef45</td>
+                        <td>Stainless Steel Plate</td>
+                        <td>08/12/23 14:23:06</td>
+                        <td>08/10/23 14:23:06</td>
+                        <td>Details</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <footer>
+        <hr>
+        <p>Temporary for easy access</p>
+        <nav>
+            <menu>
+                <li><a href="https://github.com/Fiwafoofa/website">GitHub Page</a></li>
+                <li><a href="index.html">Index</a></li>
+                <li><a href="employee.html">Employee</a></li>
+                <li><a href="manager_dashboard.html">Manager Dashboard</a></li>
+                <li><a href="admin_groups.html">Admin Groups</a></li>
+            </menu>
+        </nav>
+    </footer>
+</body>
+</html>
