@@ -4,22 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="icon" href="favicon.ico" />
 </head>
 <body>
     <header>
-        <h1>P Tracker</h1>
+        <div id="topMenu">
+            <h1><img src="logo.png"> P Tracker</h1>
+        </div>
         
-        <menu>
-            <h3>People</h3>
-            <!-- <li><a href="#"">Name 1</a></li>
-            <li><a href="#"">Name 2</a></li>
-            <li><a href="#"">Name 3</a></li> -->
-            <li>Name 1</li>
-            <li>Name 2</li>
-            <li>Name 3</li>
-        </menu>
+        <div id="sideMenu">
+            <menu>
+                <h3>People</h3>
+                <!-- <li><a href="#"">Name 1</a></li>
+                <li><a href="#"">Name 2</a></li>
+                <li><a href="#"">Name 3</a></li> -->
+                <li>Name 1</li>
+                <li>Name 2</li>
+                <li>Name 3</li>
+            </menu>
+        </div>
+
+        <!-- TODO Pull up new window for person's details -->
+        <div class="overlay" id="divOne">
+            <div class="wrapper"> 
+                <h2>Person's Details</h2>
+                <a href="#" class="close">&times;</a>  
+                <div>
+                    <h3>Tasks</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Product</th>
+                                <th>Status</th>
+                                <th>
+                                    <form>
+                                        <label for="select">Date</label>
+                                        <select id="select" name="varSelect">
+                                            <option selected>Today</option>
+                                            <option>Past Week</option>
+                                            <option>Past Month</option>
+                                            <option>Past 3 Months</option>
+                                        </select>
+                                    </form>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>safe#ab12</td>
+                                <td>Stainless Steel Safe</td>
+                                <td>Completed.</td>
+                                <td>Details</td>
+                            </tr>
+                            <tr>
+                                <td>chair#cd34</td>
+                                <td>Stainless Steel Chair :P</td>
+                                <td>Not Started</td>
+                                <td>Details</td>
+                            </tr>
+                            <tr>
+                                <td>plate#ef45</td>
+                                <td>Stainless Steel Plate</td>
+                                <td>In Progress</td>
+                                <td>Details</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
 
         <hr>
+
     </header>
     <main>
         
@@ -101,8 +159,9 @@
                 <div class="overlay" id="divOne">
                     <div class="wrapper"> 
                         <h2>Order Details</h2>
-                        <a href="#" class="close">&times;</a>  
-                        <div class="container">
+                        <a href="#" class="close">&times;</a>
+                        <img src="safe.png" width="150px" height="150px">  
+                        <div >
                             <form>
                                 <label>Order ID:</label>
                                 <input type="text" placeholder="Order ID">
@@ -114,11 +173,18 @@
                                 <input type="datetime-local" name="varDatetime" id="datetime" />
                                 <label>Customer:</label>
                                 <input type="text" placeholder="Customer">
-                                <button type="submit">Submit</button>
+                                <button type="submit">Edit</button>
+                                <button type="submit">Close</button>
                             </form>
                         </div>
 
                     </div>
+                    <menu>
+                        <li>Employee: &lt;Name&gt;</li>
+                        <li>Total Time: &lt;Time&gt;</li>
+                        <li>Start Time: &lt;Time&gt;</li>
+                        <li>End Time: &lt;Time&gt;</li>
+                    </menu>
                 </div>
             </div>
         
@@ -232,6 +298,7 @@
         <nav>
             <menu>
                 <li><a href="https://github.com/Fiwafoofa/website">GitHub Page</a></li>
+                <li><a href="about.html">About</a></li>
                 <li><a href="index.html">Index</a></li>
                 <li><a href="employee.html">Employee</a></li>
                 <li><a href="manager_dashboard.html">Manager Dashboard</a></li>

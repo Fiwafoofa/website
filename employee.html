@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="icon" href="favicon.ico" />
 </head>
 <body>
     <header>
-        <h1>P Tracker</h1>
-        <hr />
+        <h1><img src="logo.png"> P Tracker</h1>
+        <hr>
     </header>
     <main>
 
         <div id="searchTask">
             <h2>Search Task</h2>
-            <form method="get" action="manager_dashboard.html">
+            <form method="get" action="employee.html">
                 <input type="search" id="username" placeholder="Order ID" />
                 <button type="submit">Search</button>
             </form>
@@ -24,6 +25,7 @@
             <div class="overlay" id="divOne">
                 <div class="wrapper"> 
                     <h2>Order Details</h2>
+                    <img src="safe.png" width="150px" height="150px">  
                     <a href="#" class="close">&times;</a>  
                     <div class="container">
                         <!-- MIGHT CHANGE TO JUST TEXT -->
@@ -38,9 +40,19 @@
                             <input readonly type="datetime-local" name="varDatetime" id="datetime" />
                             <label>Customer:</label>
                             <input readonly type="text" placeholder="Customer">
+                            
+                            <button type="submit">Start Task</button>
+                            <button type="submit">End Task  </button>
+                            <button type="submit">Close</button>
+
                         </form>
                     </div>
-
+                    <menu>
+                        <li>Employee: &lt;Name&gt;</li>
+                        <li>Total Time: &lt;Time&gt;</li>
+                        <li>Start Time: &lt;Time&gt;</li>
+                        <li>End Time: &lt;Time&gt;</li>
+                    </menu>
                 </div>
             </div>
         </div>
@@ -154,6 +166,7 @@
         <nav>
             <menu>
                 <li><a href="https://github.com/Fiwafoofa/website">GitHub Page</a></li>
+                <li><a href="about.html">About</a></li>
                 <li><a href="index.html">Index</a></li>
                 <li><a href="employee.html">Employee</a></li>
                 <li><a href="manager_dashboard.html">Manager Dashboard</a></li>

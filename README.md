@@ -9,6 +9,8 @@ Managing consumer goods in production can be difficult, which can lead to all so
 
 ![design_draft](Design_Draft.png)
 
+**Note: Design has been changed** 
+
 ### Key features
 
 - Secure login over HTTPS
@@ -24,7 +26,7 @@ Managing consumer goods in production can be difficult, which can lead to all so
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Uses correct HTML structure for application. At minimum 6 HTML pages. Pages for login, home page, group summary, group creation, product viewing, and product creation. 
+- **HTML** - Uses correct HTML structure for application. Created 4 HTML pages. Pages for login, manager dashboard page, admin group summary, and employee page. 
 - **CSS** - Application styling that looks good on different screen sizes, uses good whitespace, color choice and contrast. (Yes, I copied this from the example because it's literally what CSS is used for. What else am I supposed to say? You better not doc me!)
 - **JavaScript** - Provides login, choice display, creating/viewing productings, and creating/viewing groups.
 - **Service** - Backend service with endpoints for:
@@ -46,13 +48,16 @@ I am going to use the required technologies in the following ways.
 
 For this deliverable I built out the structure of my application using HTML.
 
-- **HTML pages** - At least 6 HTML page that represent the ability to login, home page, create/view products, and create/view groups.
-- **Links** - The login page automatically links to the home page. The home page contains links for every group and product they are given access to.
+- **HTML pages** - 4 HTML page that are to login, a manager dashboard page, a admin group page, and an employee page.
+- **Links** - The login page automatically links to the home page. Each of the pages contains links for every page but will be removed. At the end, the only link should be one from the admin group page to a manager dashboard page.
 - **Text** - Each of the products are represented by a textual description.
-- **Images** - Display an image of the product
-- **Login** - Input box and submit button for login.
+- **Images** - Display an image of the product (and maybe employee faces).
+- **Login** - Input box and submit button for login. Login will determine which page the user will be directed to.
 - **Database** - The product and group information are pulled from the database.
-- **WebSocket** - The update of product tasks are updated to the web app in realtime.
+- **WebSocket** - The update of product tasks are updated to the web app in realtime. The data will update the `Last Updated` column in the various tables
+
+
+## TODO LATER
 
 ## CSS deliverable
 
