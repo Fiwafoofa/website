@@ -56,19 +56,19 @@ For this deliverable I built out the structure of my application using HTML.
 - **Database** - The product and group information are pulled from the database.
 - **WebSocket** - The update of product tasks are updated to the web app in realtime. The data will update the `Last Updated` column in the various tables
 
-
-## TODO LATER
-
 ## CSS deliverable
 
 For this deliverable I properly styled the application into its final appearance.
 
-- **Header, footer, and main content body**
-- **Navigation elements** - I dropped the underlines and changed the color for anchor elements.
-- **Responsive to window resizing** - My app looks great on all window sizes and devices
-- **Application elements** - Used good contrast and whitespace
-- **Application text content** - Consistent fonts
-- **Application images** - Make images consistent sizes (max size, min size)
+- **Header, footer, and main content body** - Adding a consistent header and footer across all webpages (index.html, dashboard.html, employee.html). The bodies in each of the webpages have been customized with the most being the dashboard.html page (you can only access it using for link at the bottom for now. The logic to visit that webpage will be implemented later). 
+- **Navigation elements** - There isn't and won't be much navigation on my webpage except from the login screen and the user's respective dashboard (employee or manager), but I did include a temporary nav at in the footer and a logout button in each of the dashboards.
+- **Responsive to window resizing** - My app looks great on all window sizes and devices. The entire body of the webpage adjusts to the device width, like the tables, navigation bar, and footer. (I even tested it on my own mobile device.)
+
+- **Application elements** - Tried to use good contrast and whitespace. For the most part everything looks good, but there may be too
+  much white space in the employee.html page (but don't dock points!). Stuck to only 4 colors (black, white, light gray, dark gray) and kept consistent font styles.  
+- **Application text content** - There are consistent fonts since I used bootstrap.
+- **Application images** - The only images in my application are when viewing/editing the product information, so I set a 
+  a fixed width and height within the appeared modal.
 
 ## JavaScript deliverable
 

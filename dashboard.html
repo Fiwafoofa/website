@@ -52,7 +52,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body table-scroll">
                         <table class="table table-hover table-striped">
                             <thead>
                                 <tr>
@@ -137,7 +137,6 @@
             </div>
         </div>
 
-        
     </header>
 
     <main>
@@ -145,83 +144,98 @@
         <div id="summary" class="container table-responsive">
             <br>
             <h2>Summary</h2>
-            <table class="table table-hover table-striped">
-                <thead>
-                    <tr>
-                        <th>Order ID</th>
-                        <th>Product Name</th>
-                        <th>Progress</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>safe#ab12</td>
-                        <td>Stainless Steel Safe</td>
-                        <td>On Track...</td>
-                        <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>chair#cd34</td>
-                        <td>Stainless Steel Chair :P</td>
-                        <td>Ahead of Track...</td>
-                        <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>plate#ef45</td>
-                        <td>Stainless Steel Plate</td>
-                        <td>Behind Track...</td>
-                        <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                    </tr>
-                    <tr> 
-                        <td>bowl#gh67</td>
-                        <td>Stainless Steel Bowl</td>
-                        <td>Completed</td>
-                        <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                    </tr>
-                </tbody>
-            </table>
-            <!-- <hr> -->
+            <br>
+            <div class="container container-null table-scroll">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Product Name</th>
+                            <th>Progress</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>safe#ab12</td>
+                            <td>Stainless Steel Safe</td>
+                            <td>On Track...</td>
+                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
+                        </tr>
+                        <tr>
+                            <td>chair#cd34</td>
+                            <td>Stainless Steel Chair :P</td>
+                            <td>Ahead of Track...</td>
+                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
+                        </tr>
+                        <tr>
+                            <td>plate#ef45</td>
+                            <td>Stainless Steel Plate</td>
+                            <td>Behind Track...</td>
+                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
+                        </tr>
+                        <tr> 
+                            <td>bowl#gh67</td>
+                            <td>Stainless Steel Bowl</td>
+                            <td>Completed</td>
+                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
         </div>
 
         <div id="createTask" class="container">
             <h2>Create Task</h2>
             <br>
-            <form>
-                <div class="form-group">
-                    <label>Order ID:</label>
-                    <input type="text" placeholder="Order ID">
-                </div>
-                                
-                <div class="form-group">
-                    <label>Product Name:</label>
-                    <input type="text" placeholder="Product Name">    
-                </div>
-                
-                <div class="form-group">
-                    <label>Due Date:</label>
-                    <input type="datetime-local" name="varDatetime" id="datetime" />
-                </div>
-                
-                <div class="form-group">
-                    <label>Customer:</label>
-                    <input type="text" placeholder="Customer">
-                </div>
-
-                <div class="form-group">
-                    <label for="textarea1">Other Notes:</label>
-                    <textarea class="form-control" id="textarea1"></textarea>
-                </div>
-                
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>                
+            <div class="container container-null">
+                <form>
+                    <div class="form-group">
+                        <label>Order ID:</label>
+                        <input type="text" placeholder="Order ID">
+                    </div>
+                                    
+                    <div class="form-group">
+                        <label>Product Name:</label>
+                        <input type="text" placeholder="Product Name">    
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Due Date:</label>
+                        <input type="datetime-local" name="varDatetime" id="datetime" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Customer:</label>
+                        <input type="text" placeholder="Customer">
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="textarea1">Other Notes:</label>
+                        <textarea class="form-control" id="textarea1"></textarea>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="fileUpload">Image Upload:</label>
+                        <input type="file" id="fileUpload" name="filename">
+    
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>  
+            </div>
+                          
         </div>
 
         <div id="searchTask" class="container">
             <h2>Search Task</h2>
             
-            <input type="text" id="username" placeholder="Order ID" />
-            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#productModal">Search</button>
+            <div class="container">
+                <input type="text" id="username" placeholder="Order ID" />
+                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#productModal">Search</button>
+            </div>
+            
 
             <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -281,97 +295,101 @@
             </div>
         </div>
 
-        <!-- <hr> -->
-
         <div id="upcomingTasks" class="container">
             <h2>Upcoming</h2>
-            <table class="table table-hover table-striped">
-                <thead>
-                    <tr>
-                        <th>Order ID</th>
-                        <th>Product Name</th>
-                        <th>Created</th>
-                        <th>
-                            <form>
-                                <label for="select">Date</label>
-                                <select id="select" name="varSelect">
-                                    <option selected>Today</option>
-                                    <option>Past Week</option>
-                                    <option>Past Month</option>
-                                    <option>Past 3 Months</option>
-                                </select>
-                            </form>
-                        </th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>safe#ab12</td>
-                        <td>Stainless Steel Safe</td>
-                        <td>08/10/23 14:23:06</td>
-                        <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>chair#cd34</td>
-                        <td>Stainless Steel Chair :P</td>
-                        <td>08/10/23 14:23:06</td>
-                        <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>plate#ef45</td>
-                        <td>Stainless Steel Plate</td>
-                        <td>08/10/23 14:23:06</td>
-                        <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                    </tr>
-                </tbody>
-            </table>
+            <br>
+            <div class="container container-null table-scroll">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Product Name</th>
+                            <th>Created</th>
+                            <th>
+                                <form>
+                                    <label for="select">Date</label>
+                                    <select id="select" name="varSelect">
+                                        <option selected>Today</option>
+                                        <option>Past Week</option>
+                                        <option>Past Month</option>
+                                        <option>Past 3 Months</option>
+                                    </select>
+                                </form>
+                            </th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>safe#ab12</td>
+                            <td>Stainless Steel Safe</td>
+                            <td>08/10/23 14:23:06</td>
+                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
+                        </tr>
+                        <tr>
+                            <td>chair#cd34</td>
+                            <td>Stainless Steel Chair :P</td>
+                            <td>08/10/23 14:23:06</td>
+                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
+                        </tr>
+                        <tr>
+                            <td>plate#ef45</td>
+                            <td>Stainless Steel Plate</td>
+                            <td>08/10/23 14:23:06</td>
+                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>  
         </div>
 
 
         <div id="historyTasks" class="container">
             <h2>History</h2>
-            <table class="table table-hover table-striped">
-                <thead>
-                    <tr>
-                        <th>Order ID</th>
-                        <th>Product Name</th>
-                        <th>Last Updated</th>
-                        <th>
-                            <form>
-                                <label for="select">Date</label>
-                                <select id="select" name="varSelect">
-                                    <option selected>Today</option>
-                                    <option>Past Week</option>
-                                    <option>Past Month</option>
-                                    <option>Past 3 Months</option>
-                                </select>
-                            </form>
-                        </th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>safe#ab12</td>
-                        <td>Stainless Steel Safe</td>
-                        <td>08/12/23 14:23:06</td>
-                        <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>chair#cd34</td>
-                        <td>Stainless Steel Chair :P</td>
-                        <td>08/12/23 14:23:06</td>
-                        <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>plate#ef45</td>
-                        <td>Stainless Steel Plate</td>
-                        <td>08/12/23 14:23:06</td>
-                        <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                    </tr>
-                </tbody>
-            </table>
+            <br>
+            <div class="container container-null table-scroll">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Product Name</th>
+                            <th>Last Updated</th>
+                            <th>
+                                <form>
+                                    <label for="select">Date</label>
+                                    <select id="select" name="varSelect">
+                                        <option selected>Today</option>
+                                        <option>Past Week</option>
+                                        <option>Past Month</option>
+                                        <option>Past 3 Months</option>
+                                    </select>
+                                </form>
+                            </th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>safe#ab12</td>
+                            <td>Stainless Steel Safe</td>
+                            <td>08/12/23 14:23:06</td>
+                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
+                        </tr>
+                        <tr>
+                            <td>chair#cd34</td>
+                            <td>Stainless Steel Chair :P</td>
+                            <td>08/12/23 14:23:06</td>
+                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
+                        </tr>
+                        <tr>
+                            <td>plate#ef45</td>
+                            <td>Stainless Steel Plate</td>
+                            <td>08/12/23 14:23:06</td>
+                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </main>
 
@@ -380,18 +398,17 @@
         <div class="container p-4 footer-item">
             <div class="row">
                 <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                    <h5 style="color:blue">About</h5>
+                    <h5 class="footer-header">About</h5>
                     <p>
                         This product tracking application will allow organizations 
                         to digitally create products with information about production such as materials and 
-                        time of production, and it will gather data on the efficiency of production for better 
-                        optimization. With this 
+                        time of production. With this 
                         tool, companies will be able to be better organized and take the next step forward with 
                         their manufacturing.
                     </p>
                 </div>
                 <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                    <h5 style="color:blue">Quote</h5>
+                    <h5 class="footer-header">Quote</h5>
 
                     <p>
                         “Computers are incredibly fast, accurate, and stupid. Human beings are incredibly slow, 
@@ -400,7 +417,6 @@
                 </div>
             </div>
             
-            <p>Temporary for easy access</p>
             <a href="https://github.com/Fiwafoofa/website"> &bull; GitHub Page</a>
             <a href="index.html"> &bull; Login</a>
             <a href="employee.html"> &bull; Employee</a>

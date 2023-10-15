@@ -26,6 +26,11 @@
     margin-bottom: 8vh;
 }
 
+.container-null {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
 .footer-item {
     color: white;
     margin-bottom: 0px;
@@ -40,3 +45,17 @@
         max-width: 700px;
     }
 }
+
+.footer-header {
+    color: #1f73fb;
+}
+
+textarea {
+    height: 150px;
+}
+
+.table-scroll, .form-group {
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+

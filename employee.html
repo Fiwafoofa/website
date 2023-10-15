@@ -27,8 +27,11 @@
         <div id="searchTask" class="container">
             <h2>Search Task</h2>
             
-            <input type="text" id="username" placeholder="Order ID" />
-            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#productModal">Search</button>
+            <div class="container container-null" style="overflow-x: scroll;">
+                <input type="text" id="prodctSearch" placeholder="Order ID" />
+                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#productModal">Search</button>
+            </div>
+            
             
             <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -86,118 +89,117 @@
 
         <div id="upcomingTasks" class="container">
             <h2>Upcoming</h2>
-            <table class="table table-hover table-striped">
-                <thead>
-                    <tr>
-                        <th>Order ID</th>
-                        <th>Product Name</th>
-                        <th>Created</th>
-                        <th>
-                            <form>
-                                <label for="select">Date</label>
-                                <select id="select" name="varSelect">
-                                    <option selected>Today</option>
-                                    <option>Past Week</option>
-                                    <option>Past Month</option>
-                                    <option>Past 3 Months</option>
-                                </select>
-                            </form>
-                        </th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>safe#ab12</td>
-                        <td>Stainless Steel Safe</td>
-                        <td>08/10/23 14:23:06</td>
-                        <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>chair#cd34</td>
-                        <td>Stainless Steel Chair :P</td>
-                        <td>08/10/23 14:23:06</td>
-                        <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>plate#ef45</td>
-                        <td>Stainless Steel Plate</td>
-                        <td>08/10/23 14:23:06</td>
-                        <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                    </tr>
-                </tbody>
-
-            </table>
+            <br>
+            <div class="container container-null table-scroll" >
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Product Name</th>
+                            <th>Created</th>
+                            <th>
+                                <form>
+                                    <label for="select">Date</label>
+                                    <select id="select" name="varSelect">
+                                        <option selected>Today</option>
+                                        <option>Past Week</option>
+                                        <option>Past Month</option>
+                                        <option>Past 3 Months</option>
+                                    </select>
+                                </form>
+                            </th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>safe#ab12</td>
+                            <td>Stainless Steel Safe</td>
+                            <td>08/10/23 14:23:06</td>
+                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
+                        </tr>
+                        <tr>
+                            <td>chair#cd34</td>
+                            <td>Stainless Steel Chair :P</td>
+                            <td>08/10/23 14:23:06</td>
+                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
+                        </tr>
+                        <tr>
+                            <td>plate#ef45</td>
+                            <td>Stainless Steel Plate</td>
+                            <td>08/10/23 14:23:06</td>
+                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
 
 
         <div id="historyTasks" class="container">
             <h2>History</h2>
-            <table class="table table-hover table-striped">
-                <thead>
-                    <tr>
-                        <th>Order ID</th>
-                        <th>Product Name</th>
-                        <th>Last Updated</th>
-                        <th>
-                            <form>
-                                <label for="select">Date</label>
-                                <select id="select" name="varSelect">
-                                    <option selected>Today</option>
-                                    <option>Past Week</option>
-                                    <option>Past Month</option>
-                                    <option>Past 3 Months</option>
-                                </select>
-                            </form>
-                        </th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>safe#ab12</td>
-                        <td>Stainless Steel Safe</td>
-                        <td>08/10/23 14:23:06</td>
-                        <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>chair#cd34</td>
-                        <td>Stainless Steel Chair :P</td>
-                        <td>08/10/23 14:23:06</td>
-                        <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>plate#ef45</td>
-                        <td>Stainless Steel Plate</td>
-                        <td>08/10/23 14:23:06</td>
-                        <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                    </tr>
-                </tbody>
-            </table>
+            <br>
+            <div class="container container-null table-scroll">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Product Name</th>
+                            <th>Last Updated</th>
+                            <th>
+                                <form>
+                                    <label for="select">Date</label>
+                                    <select id="select" name="varSelect">
+                                        <option selected>Today</option>
+                                        <option>Past Week</option>
+                                        <option>Past Month</option>
+                                        <option>Past 3 Months</option>
+                                    </select>
+                                </form>
+                            </th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>safe#ab12</td>
+                            <td>Stainless Steel Safe</td>
+                            <td>08/10/23 14:23:06</td>
+                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
+                        </tr>
+                        <tr>
+                            <td>chair#cd34</td>
+                            <td>Stainless Steel Chair :P</td>
+                            <td>08/10/23 14:23:06</td>
+                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
+                        </tr>
+                        <tr>
+                            <td>plate#ef45</td>
+                            <td>Stainless Steel Plate</td>
+                            <td>08/10/23 14:23:06</td>
+                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-
-
-
-
-
     </main>
     <footer class="bg-dark text-center text-lg-start footer-item">
         <div class="container p-4 footer-item">
             <div class="row">
                 <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                    <h5 class="text-uppercase" style="color:blue">ABOUT</h5>
+                    <h5 style="color:blue">About</h5>
                     <p>
                         This product tracking application will allow organizations 
                         to digitally create products with information about production such as materials and 
-                        time of production, and it will gather data on the efficiency of production for better 
-                        optimization. With this 
+                        time of production. With this 
                         tool, companies will be able to be better organized and take the next step forward with 
                         their manufacturing.
                     </p>
                 </div>
                 <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                    <h5 class="text-uppercase" style="color:blue">Quote</h5>
+                    <h5 style="color:blue">Quote</h5>
 
                     <p>
                         “Computers are incredibly fast, accurate, and stupid. Human beings are incredibly slow, 
@@ -206,7 +208,6 @@
                 </div>
             </div>
             
-            <p>Temporary for easy access</p>
             <a href="https://github.com/Fiwafoofa/website"> &bull; GitHub Page</a>
             <a href="index.html"> &bull; Login</a>
             <a href="employee.html"> &bull; Employee</a>
