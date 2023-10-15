@@ -1,0 +1,45 @@
+body {
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	height: 100vh;
+}
+
+header, footer {
+	flex: none;
+}
+
+footer {
+	padding: 0.5rem;
+}
+
+body > div {
+	flex: auto;
+	margin: 0.4rem;
+	display: flex;
+}
+
+.menu {
+	display: flex;
+	flex-direction: column;
+	margin: 0.2rem;
+}
+
+
+/* th, td {
+	white-space: nowrap;
+} */
+
+.btn {
+	/* padding: 0.75rem;
+	text-align: left;
+	white-space: nowrap; */
+    margin: 50px;
+}
+
+.btn-margin {
+    margin: 50px;
+}
+
+
+
