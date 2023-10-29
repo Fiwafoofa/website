@@ -76,7 +76,7 @@ For this deliverable I implemented by JavaScript so that the application works f
 
 - **login** - When you press enter or the login button it takes you to the either the employee page or the manager's dashboard page depending on whether or not you registered as a manager or an employee.
 - **database** - Displayed the products progress and information in the tables. Currently this is stored and retrieved from an array in the memory of the program, but it will be replaced with the database data later.
-- **WebSocket** - I used the setInterval function to periodically add and complete orders. (If you look at the console, you'll see orders appearing and disappearing from the first array).
+- **WebSocket** - I used the setInterval function to periodically add and complete orders. Because of this, the contents of the summary and upcoming table will change. (If you look at the console, you'll see orders appearing and disappearing from the first array).
 - **application logic** - The product, group, and summary display change based up the user's selections and information from the database. For example, if the user changes the time frame given in the top right of each table, the number of products shown changes or if the manager edits or adds a product, that will also show up when looking up that order.
 
 ## Service deliverable (yeah I don't know what the idea behind this deliverable stuff is, but I did not do anything!)

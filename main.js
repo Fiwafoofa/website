@@ -11,6 +11,7 @@ let historyTasks = [
 
 let upcomingTasks = [
     {orderID : "safe2#ab12", productName : "Stainless Steel Safe", dueDate : "11/01/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
+    {orderID : "safe2#ab100", productName : "Stainless Steel Safe", dueDate : "11/03/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
     {orderID : "chair2#cd34", productName : "Stainless Steel Chair", dueDate : "12/11/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
     {orderID : "plate2#ef45", productName : "Stainless Steel Plate", dueDate : "12/12/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
     {orderID : "bowl2#gh67", productName : "Stainless Steel Bowl", dueDate : "11/12/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
@@ -118,7 +119,7 @@ function fillModal(orderID) {
         task = upcomingTasks.filter((taskObj) => {
             return taskObj.orderID === orderID;
         })
-        if (task == null || task == undefined) {
+        if (task.length == 0) {
             alert("Order Does Not Exist");
             return;
         }
@@ -260,11 +261,11 @@ function sleep(ms) {
 async function createAndCompleteTasks() {
     let i = 0;
     while (true) {
-        console.log(`Waiting 2 seconds...`);
+        console.log(`Waiting 5 seconds...`);
         console.log(upcomingTasks);
         console.log(historyTasks);
         i += 2;
-        await sleep(i * 1000);
+        await sleep(i * 5000);
         let date = new Date()
         date.setMonth(date.getMonth()+1);
         upcomingTasks.push({orderID : `NEW#${i}`, productName : "Stainless Steel Safe", 
@@ -275,6 +276,8 @@ async function createAndCompleteTasks() {
         date.setMonth(date.getMonth()+1);
         task.endTime = date.toISOString();
         updateOrders();
+
+        createRows("Current Week", upcomingTasks, "summaryTableBody");
     }
 }
 
