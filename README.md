@@ -18,7 +18,7 @@ Managing consumer goods in production can be difficult, which can lead to all so
 - Display of product production
 - Ability to specify product details such as materials and processes
 - Progress from production displayed in realtime
-- Results are production taks are persistently stored and displayed
+- Results are production tasks are persistently stored and displayed
 - Ability to create and join organizations.
 - Ability for admin to create and delete products and invite others.
 
@@ -28,7 +28,7 @@ I am going to use the required technologies in the following ways.
 
 - **HTML** - Uses correct HTML structure for application. Created 4 HTML pages. Pages for login, manager dashboard page, admin group summary, and employee page. 
 - **CSS** - Application styling that looks good on different screen sizes, uses good whitespace, color choice and contrast. (Yes, I copied this from the example because it's literally what CSS is used for. What else am I supposed to say? You better not doc me!)
-- **JavaScript** - Provides login, choice display, creating/viewing productings, and creating/viewing groups.
+- **JavaScript** - Provides login, choice display, creating/viewing products, and creating/viewing groups.
 - **Service** - Backend service with endpoints for:
   - login
   - retrieving product information
@@ -74,10 +74,10 @@ For this deliverable I properly styled the application into its final appearance
 
 For this deliverable I implemented by JavaScript so that the application works for a single user. I also added placeholders for future technology.
 
-- **login** - When you press enter or the login button it takes you to the voting page.
-- **database** - Displayed the products progress. Currently this is stored and retrieved from local storage, but it will be replaced with the database data later.
-- **WebSocket** - I used the setInterval function to periodically change product information. This will be replaced with WebSocket messages later.
-- **application logic** - The product, group, and summary display change based up the user's selections and information from the database.
+- **login** - When you press enter or the login button it takes you to the either the employee page or the manager's dashboard page depending on whether or not you registered as a manager or an employee.
+- **database** - Displayed the products progress and information in the tables. Currently this is stored and retrieved from an array in the memory of the program, but it will be replaced with the database data later.
+- **WebSocket** - I used the setInterval function to periodically add and complete orders. (If you look at the console, you'll see orders appearing and disappearing from the first array).
+- **application logic** - The product, group, and summary display change based up the user's selections and information from the database. For example, if the user changes the time frame given in the top right of each table, the number of products shown changes or if the manager edits or adds a product, that will also show up when looking up that order.
 
 ## Service deliverable (yeah I don't know what the idea behind this deliverable stuff is, but I did not do anything!)
 
@@ -99,10 +99,10 @@ For this deliverable I stored the product information in the database.
 
 ## Login deliverable
 
-For this deliverable I associate the products and gruops with the logged in user.
+For this deliverable I associate the products and groups with the logged in user.
 
 - **User registration** - Creates a new account in the database.
-- **existing user** - Stores the product and grou under the same user if the user already exists.
+- **existing user** - Stores the product and groups under the same user if the user already exists.
 - **Use MongoDB to store credentials** - Stores both user and their groups/products.
 - **Restricts functionality** - You cannot use the web application until you have logged in. This is restricted on the frontend only. 
 

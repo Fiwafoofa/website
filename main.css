@@ -54,7 +54,7 @@ textarea {
     height: 150px;
 }
 
-.table-scroll, .form-group {
+.table-scroll, .form-group, #searchButtonEmployee {
     overflow-x: auto;
     overflow-y: auto;
 }

@@ -27,9 +27,9 @@
         <div id="searchTask" class="container">
             <h2>Search Task</h2>
             
-            <div class="container container-null" style="overflow-x: scroll;">
-                <input type="text" id="prodctSearch" placeholder="Order ID" />
-                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#productModal">Search</button>
+            <div class="container container-null" id="searchButtonEmployee">
+                <input type="text" id="productSearch" placeholder="Order ID" />
+                <button onclick="searchOrder()" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#productModal">Search</button>
             </div>
             
             
@@ -47,33 +47,33 @@
                             <form>
                                 <div class="form-group">
                                     <label>Order ID:</label>
-                                    <input readonly type="text" placeholder="Order ID">
+                                    <input readonly id="orderIDInput" type="text" placeholder="Order ID">
                                 </div>
                                                 
                                 <div class="form-group">
                                     <label>Product Name:</label>
-                                    <input readonly type="text" placeholder="Product Name">    
+                                    <input readonly id="productNameInput" type="text" placeholder="Product Name">    
                                 </div>
                                 
                                 <div class="form-group">
                                     <label>Due Date:</label>
-                                    <input readonly type="datetime-local" name="varDatetime" id="datetime" />
+                                    <input readonly id="dueDateInput" type="text" name="varDatetime" id="datetime">
                                 </div>
                                 
                                 <div class="form-group">
                                     <label>Customer:</label>
-                                    <input readonly type="text" placeholder="Customer">
+                                    <input readonly id="customerInput" type="text" placeholder="Customer">
                                 </div>
             
                                 <div class="form-group">
-                                    <label for="textarea1">Other Notes:</label>
-                                    <textarea readonly class="form-control" id="textarea1"></textarea>
+                                    <label for="otherNotesInput">Other Notes:</label>
+                                    <textarea readonly id="otherNotesInput" class="form-control" id="textarea1"></textarea>
                                 </div>
 
                                 <menu>
-                                    <li>Start Time: &lt;0&gt;</li>
-                                    <li>End Time: &lt;0&gt;</li>
-                                    <li>Total Time: &lt;0&gt; minutes</li>
+                                    <li id="startTime">Start Time: &lt;0&gt;</li>
+                                    <li id="endTime">End Time: &lt;0&gt;</li>
+                                    <!-- <li id="totalTime">Total Time: &lt;0&gt; minutes</li> -->
                                 </menu>
                             </form>
                         </div>
@@ -96,40 +96,23 @@
                         <tr>
                             <th>Order ID</th>
                             <th>Product Name</th>
-                            <th>Created</th>
+                            <th>Due Date</th>
                             <th>
                                 <form>
-                                    <label for="select">Date</label>
-                                    <select id="select" name="varSelect">
+                                    <label for="upcomingTasksSelect">Date</label>
+                                    <select id="upcomingTasksSelect" name="varSelect">
                                         <option selected>Today</option>
-                                        <option>Past Week</option>
-                                        <option>Past Month</option>
-                                        <option>Past 3 Months</option>
+                                        <option>Current Week</option>
+                                        <option>Current Month</option>
+                                        <option>Current 3 Months</option>
                                     </select>
                                 </form>
                             </th>
                             
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>safe#ab12</td>
-                            <td>Stainless Steel Safe</td>
-                            <td>08/10/23 14:23:06</td>
-                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                        </tr>
-                        <tr>
-                            <td>chair#cd34</td>
-                            <td>Stainless Steel Chair :P</td>
-                            <td>08/10/23 14:23:06</td>
-                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                        </tr>
-                        <tr>
-                            <td>plate#ef45</td>
-                            <td>Stainless Steel Plate</td>
-                            <td>08/10/23 14:23:06</td>
-                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                        </tr>
+                    <tbody id="upcomingTasksTableBody">
+
                     </tbody>
                 </table>
             </div>
@@ -146,11 +129,11 @@
                         <tr>
                             <th>Order ID</th>
                             <th>Product Name</th>
-                            <th>Last Updated</th>
+                            <th>Due Date</th>
                             <th>
                                 <form>
-                                    <label for="select">Date</label>
-                                    <select id="select" name="varSelect">
+                                    <label for="historyTasksSelect">Date</label>
+                                    <select id="historyTasksSelect" name="varSelect">
                                         <option selected>Today</option>
                                         <option>Past Week</option>
                                         <option>Past Month</option>
@@ -161,25 +144,8 @@
                             
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>safe#ab12</td>
-                            <td>Stainless Steel Safe</td>
-                            <td>08/10/23 14:23:06</td>
-                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                        </tr>
-                        <tr>
-                            <td>chair#cd34</td>
-                            <td>Stainless Steel Chair :P</td>
-                            <td>08/10/23 14:23:06</td>
-                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                        </tr>
-                        <tr>
-                            <td>plate#ef45</td>
-                            <td>Stainless Steel Plate</td>
-                            <td>08/10/23 14:23:06</td>
-                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                        </tr>
+                    <tbody id="historyTasksTableBody">
+                        
                     </tbody>
                 </table>
             </div>
@@ -219,6 +185,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+    <script src="main.js"></script>
 </body>
 </html>

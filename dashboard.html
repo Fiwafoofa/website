@@ -16,7 +16,7 @@
             <h1 class="heading"><img src="logo.png" class="logo"> P Tracker</h1>
             
             <ul class="nav nav-pills nav-fill justify-content-end">
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link btn btn-secondary" href="#" data-toggle="modal" data-target="#employeeModal">Person 1</a>
                 </li>
                 <li class="nav-item">
@@ -24,15 +24,15 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link btn btn-secondary" href="#" data-toggle="modal" data-target="#employeeModal">Person 3</a>
-                </li>
+                </li> -->
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" 
                     aria-haspopup="true" aria-expanded="false">More</a>
                     <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#employeeModal">Person 6</a>
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#employeeModal">Person 7</a>
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#employeeModal">Person 8</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#employeeModal">Person 1</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#employeeModal">Person 2</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#employeeModal">Person 3</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#inviteModal">Invite</a>
                     </div>
@@ -58,22 +58,23 @@
                                 <tr>
                                     <th>Order ID</th>
                                     <th>Product Name</th>
-                                    <th>Last Updated</th>
+                                    <th></th>
+                                    <!-- <th>Last Updated</th>
                                     <th>Created</th>
                                     <th>
                                         <form>
-                                            <label for="select">Date</label>
-                                            <select id="select" name="varSelect">
+                                            <label for="historyTasksSelectEmployee">Date</label>
+                                            <select id="historyTasksSelectEmployee" name="varSelect">
                                                 <option selected>Today</option>
                                                 <option>Past Week</option>
                                                 <option>Past Month</option>
                                             </select>
-                                        </form>
-                                    </th>
+                                        </form> 
+                                    </th> -->
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
+                            <tbody id="historyTasksTableBodyEmployee">
+                                <!-- <tr>
                                     <td>chair#cd34</td>
                                     <td>Stainless Steel Chair :P</td>
                                     <td>08/12/23 14:23:06</td>
@@ -86,13 +87,13 @@
                                     <td>08/12/23 14:23:06</td>
                                     <td>08/10/23 14:23:06</td>
                                     <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                                </tr>
+                                </tr>  -->
                             </tbody>
                         </table>
-                        <menu>
+                        <!-- <menu>
                             <li>Currently Working on: &lt;None&gt;</li>
                             <li>Current Time: &lt;0&gt; minutes</li>
-                        </menu>
+                        </menu> -->
                         
 
                     </div>
@@ -122,12 +123,9 @@
                                             
         
                             <div class="form-group">
-                                <label for="textarea1">Additional Message:</label>
-                                <textarea class="form-control" id="textarea1"></textarea>
+                                <label for="textMessage1">Additional Message:</label>
+                                <textarea class="form-control" id="textMessage1"></textarea>
                             </div>
-                        
-                        
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -140,7 +138,6 @@
     </header>
 
     <main>
-        
         <div id="summary" class="container table-responsive">
             <br>
             <h2>Summary</h2>
@@ -151,12 +148,12 @@
                         <tr>
                             <th>Order ID</th>
                             <th>Product Name</th>
-                            <th>Progress</th>
+                            <th>Due Date</th>
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
+                    <tbody id="summaryTableBody">
+                        <!-- <tr>
                             <td>safe#ab12</td>
                             <td>Stainless Steel Safe</td>
                             <td>On Track...</td>
@@ -179,7 +176,7 @@
                             <td>Stainless Steel Bowl</td>
                             <td>Completed</td>
                             <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>
@@ -190,40 +187,39 @@
             <h2>Create Task</h2>
             <br>
             <div class="container container-null">
-                <form>
+                <!-- <form> -->
                     <div class="form-group">
                         <label>Order ID:</label>
-                        <input type="text" placeholder="Order ID">
+                        <input id="orderIDInputCreate" type="text" placeholder="Order ID">
                     </div>
                                     
                     <div class="form-group">
                         <label>Product Name:</label>
-                        <input type="text" placeholder="Product Name">    
+                        <input id="productNameInputCreate" type="text" placeholder="Product Name">    
                     </div>
                     
                     <div class="form-group">
                         <label>Due Date:</label>
-                        <input type="datetime-local" name="varDatetime" id="datetime" />
+                        <input id="dueDateInputCreate" type="datetime-local" name="varDatetime" id="datetime" />
                     </div>
                     
                     <div class="form-group">
                         <label>Customer:</label>
-                        <input type="text" placeholder="Customer">
+                        <input id="customerInputCreate" type="text" placeholder="Customer">
                     </div>
     
                     <div class="form-group">
-                        <label for="textarea1">Other Notes:</label>
-                        <textarea class="form-control" id="textarea1"></textarea>
+                        <label for="notesInputCreate">Other Notes:</label>
+                        <textarea class="form-control" id="notesInputCreate"></textarea>
                     </div>
     
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="fileUpload">Image Upload:</label>
                         <input type="file" id="fileUpload" name="filename">
-    
-                    </div>
+                    </div> -->
                     
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>  
+                    <button onclick="createTask()" type="button" class="btn btn-primary">Submit</button>
+                <!-- </form>   -->
             </div>
                           
         </div>
@@ -231,12 +227,12 @@
         <div id="searchTask" class="container">
             <h2>Search Task</h2>
             
-            <div class="container">
-                <input type="text" id="username" placeholder="Order ID" />
-                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#productModal">Search</button>
+            <div class="container container-null" id="searchButtonEmployee">
+                <input type="text" id="productSearch" placeholder="Order ID" />
+                <button onclick="searchOrder()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#productModal">Search</button>
             </div>
             
-
+            
             <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -246,49 +242,45 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <!-- class="img-fluid rounded mx-auto d-block img-thumbnail" -->
-                        
-                    
                         <div class="modal-body">
-                            <img src="safe.png" alt="Safe image" class="img-fluid rounded mx-auto d-block modal-img">  
-                            <hr>
+                            <img src="safe.png" width="150px" height="150px">  
                             <form>
                                 <div class="form-group">
                                     <label>Order ID:</label>
-                                    <input type="text" placeholder="Order ID">
+                                    <input readonly id="orderIDInput" type="text" placeholder="Order ID">
                                 </div>
                                                 
                                 <div class="form-group">
                                     <label>Product Name:</label>
-                                    <input type="text" placeholder="Product Name">    
+                                    <input readonly id="productNameInput" type="text" placeholder="Product Name">    
                                 </div>
                                 
                                 <div class="form-group">
                                     <label>Due Date:</label>
-                                    <input type="datetime-local" name="varDatetime" id="datetime" />
+                                    <input readonly id="dueDateInput" type="text" name="varDatetime" id="datetime">
                                 </div>
                                 
                                 <div class="form-group">
                                     <label>Customer:</label>
-                                    <input type="text" placeholder="Customer">
+                                    <input readonly id="customerInput" type="text" placeholder="Customer">
                                 </div>
             
                                 <div class="form-group">
-                                    <label for="textarea1">Other Notes:</label>
-                                    <textarea class="form-control" id="textarea1"></textarea>
+                                    <label for="otherNotesInput">Other Notes:</label>
+                                    <textarea readonly id="otherNotesInput" class="form-control" id="textarea1"></textarea>
                                 </div>
 
                                 <menu>
-                                    <li>Employee: &lt;None&gt;</li>
-                                    <li>Total Time: &lt;0&gt; minutes</li>
-                                    <li>Start Time: &lt;0&gt;</li>
-                                    <li>End Time: &lt;0&gt;</li>
+                                    <li id="startTime">Start Time: &lt;0&gt;</li>
+                                    <li id="endTime">End Time: &lt;0&gt;</li>
+                                    <!-- <li id="totalTime">Total Time: &lt;0&gt; minutes</li> -->
                                 </menu>
                             </form>
                         </div>
                         <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">Start Task</button>
+                            <button type="button" class="btn btn-primary">End Task</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
                         </div>
                     </div>
                 </div>
@@ -298,51 +290,33 @@
         <div id="upcomingTasks" class="container">
             <h2>Upcoming</h2>
             <br>
-            <div class="container container-null table-scroll">
+            <div class="container container-null table-scroll" >
                 <table class="table table-hover table-striped">
                     <thead>
                         <tr>
                             <th>Order ID</th>
                             <th>Product Name</th>
-                            <th>Created</th>
+                            <th>Due Date</th>
                             <th>
                                 <form>
-                                    <label for="select">Date</label>
-                                    <select id="select" name="varSelect">
+                                    <label for="upcomingTasksSelect">Date</label>
+                                    <select id="upcomingTasksSelect" name="varSelect">
                                         <option selected>Today</option>
-                                        <option>Past Week</option>
-                                        <option>Past Month</option>
-                                        <option>Past 3 Months</option>
+                                        <option>Current Week</option>
+                                        <option>Current Month</option>
+                                        <option>Current 3 Months</option>
                                     </select>
                                 </form>
                             </th>
                             
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>safe#ab12</td>
-                            <td>Stainless Steel Safe</td>
-                            <td>08/10/23 14:23:06</td>
-                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                        </tr>
-                        <tr>
-                            <td>chair#cd34</td>
-                            <td>Stainless Steel Chair :P</td>
-                            <td>08/10/23 14:23:06</td>
-                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                        </tr>
-                        <tr>
-                            <td>plate#ef45</td>
-                            <td>Stainless Steel Plate</td>
-                            <td>08/10/23 14:23:06</td>
-                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                        </tr>
+                    <tbody id="upcomingTasksTableBody">
+
                     </tbody>
                 </table>
-            </div>  
+            </div>
         </div>
-
 
         <div id="historyTasks" class="container">
             <h2>History</h2>
@@ -353,11 +327,11 @@
                         <tr>
                             <th>Order ID</th>
                             <th>Product Name</th>
-                            <th>Last Updated</th>
+                            <th>Due Date</th>
                             <th>
                                 <form>
-                                    <label for="select">Date</label>
-                                    <select id="select" name="varSelect">
+                                    <label for="historyTasksSelect">Date</label>
+                                    <select id="historyTasksSelect" name="varSelect">
                                         <option selected>Today</option>
                                         <option>Past Week</option>
                                         <option>Past Month</option>
@@ -368,25 +342,8 @@
                             
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>safe#ab12</td>
-                            <td>Stainless Steel Safe</td>
-                            <td>08/12/23 14:23:06</td>
-                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                        </tr>
-                        <tr>
-                            <td>chair#cd34</td>
-                            <td>Stainless Steel Chair :P</td>
-                            <td>08/12/23 14:23:06</td>
-                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                        </tr>
-                        <tr>
-                            <td>plate#ef45</td>
-                            <td>Stainless Steel Plate</td>
-                            <td>08/12/23 14:23:06</td>
-                            <td><a href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>
-                        </tr>
+                    <tbody id="historyTasksTableBody">
+                        
                     </tbody>
                 </table>
             </div>
@@ -428,5 +385,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
 </body>
 </html>
