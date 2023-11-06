@@ -1,69 +1,35 @@
-let registeredUsers = [
-    {email : "test" , password : "test", role : "Manager"},
-    {email : "test2" , password : "test2", role : "Employee"}
-]
+const express = require('express');
+const app = express();
 
-const loginEmailID = "login-email-input";
-const loginPasswordID = "login-password-input";
+// The service port. In production the frontend code is statically hosted by the service on the same port.
+const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
-const registerEmailID = "register-email-input";
-const registerPasswordID = "register-password-input";
-const registerRoleEmpID = "registerRoleEmp";
-const registerRoleManagerID = "registerRoleMan";
+// JSON body parsing using built-in middleware
+app.use(express.json());
 
-function login() {
-    let emailInput = document.getElementById(loginEmailID).value;
-    let passwordInput = document.getElementById(loginPasswordID).value;
-    if (emailInput == "" || passwordInput == "") {
-        alert("Missing Email Address or Password");
-        return;
-    }
+// Serve up the frontend static content hosting
+app.use(express.static('public'));
 
-    let user = registeredUsers.find((obj) => {
-        return obj.email == emailInput;
-    });
+// // Router for service endpoints
+// const apiRouter = express.Router();
+// app.use(`/api`, apiRouter);
 
-    if (user == null) {
-        alert("Invalid Email Address or Password");
-        return;
-    }
+// // GetScores
+// apiRouter.get('/scores', (_req, res) => {
+//   res.send(scores);
+// });
 
-    if (passwordInput != user.password) {
-        alert("Invalid Email Address or Password");
-        return;
-    }
+// // SubmitScore
+// apiRouter.post('/score', (req, res) => {
+//   scores = updateScores(req.body, scores);
+//   res.send(scores);
+// });
 
-    if (user.role == "Employee") {
-        window.location.href = "employee.html";
-    } else {
-        window.location.href = "dashboard.html"
-    }
-}
+// Return the application's default page if the path is unknown
+app.use((_req, res) => {
+  res.sendFile('index.html', { root: 'public' });
+});
 
-function register() {
-    console.log(registeredUsers);
-
-    let emailInput = document.getElementById(registerEmailID).value;
-    let passwordInput = document.getElementById(registerPasswordID).value;
-    let roleInputEmp = document.getElementById(registerRoleEmpID);
-    let roleInputMan = document.getElementById(registerRoleManagerID);
-    let roleInputChecked = (roleInputEmp.checked != false) ? roleInputEmp.checked : roleInputMan.checked;
-    let roleInputValue = (roleInputEmp.checked != false) ? roleInputEmp.value : roleInputMan.value;
-
-    if (emailInput == "" || passwordInput == "" || roleInputChecked == false) {
-        alert("Missing Email Address, Password, or Role");
-        return;
-    }
-
-    let user = {email : emailInput, password : passwordInput, role : roleInputValue}
-
-    registeredUsers.push(user);
-    localStorage.setItem(emailInput, user);
-
-    if (roleInput1 == true) {
-        window.location.href = "employee.html";
-    } else {
-        window.location.href = "dashboard.html"
-    }
-}
-
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+});
