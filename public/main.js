@@ -140,6 +140,7 @@ async function startTask() {
         return;
     }
     task.startTime = new Date();
+    document.getElementById("startTime").innerText = task.startTime;
     try {
         await fetch('/updateTask', {
             method: 'PUT',
@@ -161,6 +162,7 @@ async function endTask() {
         return;
     }
     task.endTime = new Date();
+    document.getElementById("endTime").innerText = task.endTime;
     try {
         await fetch('/updateTask', {
             method: 'PUT',
