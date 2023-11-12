@@ -56,10 +56,6 @@ app.post(`/addTask`, (req, res) => {
   res.send()
 });
 
-app.get(`/getTask`, (req, res) => {
-  res.send({message : "HI"});
-});
-
 app.get(`/getPastTasks`, (req, res) => {
   res.send(pastTasks);
 });
@@ -68,12 +64,13 @@ app.get(`/getFutureTasks`, (req, res) => {
   res.send(upcomingTasks);
 });
 
-app.delete(`/removeTask`, (req, res) => {
-
-});
-
-app.use(`/updateTask`, (req, res) => {
-
+app.put(`/updateTask`, (req, res) => {
+  let orderID = req.body.orderID;
+  upcomingTasks = upcomingTasks.filter((obj) => {
+    return obj.orderID != orderID;
+  })
+  upcomingTasks.push(req.body);
+  res.send();
 });
 
 app.use((req, res) => {

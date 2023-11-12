@@ -79,15 +79,15 @@ For this deliverable I implemented by JavaScript so that the application works f
 - **WebSocket** - I used the setInterval function to periodically add and complete orders. Because of this, the contents of the summary and upcoming table will change. (If you look at the console, you'll see orders appearing and disappearing from the first array).
 - **application logic** - The product, group, and summary display change based up the user's selections and information from the database. For example, if the user changes the time frame given in the top right of each table, the number of products shown changes or if the manager edits or adds a product, that will also show up when looking up that order.
 
-## Service deliverable (yeah I don't know what the idea behind this deliverable stuff is, but I did not do anything!)
+## Service deliverable
 
 For this deliverable I added backend endpoints that receives product and group information and returns a summary.
 
 - **Node.js/Express HTTP service** - done!
 - **Static middleware for frontend** - done!
-- **Calls to third party endpoints** - Grabbed a quote from a third party end point and incorporated it into the footing of my website.
-- **Backend service endpoints** - Placeholders for login that stores the current user on the server. Endpoints for product information.
-- **Frontend calls service endpoints** - I did this using the fetch function whenever I needed to register/get users and when I need to any CRUD operations on my orders.
+- **Calls to third party endpoints** - Grabbed a quote from a third party end point and incorporated it into the footing of my website (I couldn't think of how else to use a third part endpoint... don't doc me please).
+- **Backend service endpoints** - Added login and register end points that will later allow a database to be accessed. The frontend login.js refers to these end points. Additionally, there are CRUD endpoints (except for delete) for managing tasks.
+- **Frontend calls service endpoints** - I did this using the fetch function whenever I needed to register/get users and when I needed to add an order, get orders, or update orders. 
 
 ## DB deliverable (yeah I don't know what the idea behind this deliverable stuff is, but I did not do anything!)
 

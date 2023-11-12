@@ -1,31 +1,5 @@
-// let historyTasks = [
-//     {orderID : "safe#ab12", productName : "Stainless Steel Safe", dueDate : "10/25/23", startTime : "2023-09-29T05:20:30.319Z", endTime :"2023-10-29T05:20:30.319Z", customer : "Billy S", otherNotes : "Blank"},
-//     {orderID : "chair#cd34", productName : "Stainless Steel Chair", dueDate : "10/11/23", startTime : "2023-09-29T05:20:30.319Z", endTime :"2023-10-29T05:20:30.319Z", customer : "Billy S", otherNotes : "Blank"},
-//     {orderID : "plate#ef45", productName : "Stainless Steel Plate", dueDate : "10/12/23", startTime : "2023-09-29T05:20:30.319Z", endTime :"2023-10-29T05:20:30.319Z", customer : "Billy S", otherNotes : "Blank"},
-//     {orderID : "bowl#gh67", productName : "Stainless Steel Bowl", dueDate : "8/10/23", startTime : "2023-09-29T05:20:30.319Z", endTime :"2023-10-29T05:20:30.319Z", customer : "Billy S", otherNotes : "Blank"},
-//     {orderID : "safe3#ab34", productName : "Stainless Steel Safe", dueDate : "8/7/23", startTime : "2023-09-29T05:20:30.319Z", endTime :"2023-10-29T05:20:30.319Z", customer : "Billy S", otherNotes : "Blank"},
-//     {orderID : "chair3#cd56", productName : "Stainless Steel Chair", dueDate : "10/2/23", startTime : "2023-09-29T05:20:30.319Z", endTime :"2023-10-29T05:20:30.319Z", customer : "Billy S", otherNotes : "Blank"},
-//     {orderID : "plate3#ef710", productName : "Stainless Steel Plate", dueDate : "2/12/23", startTime : "2023-09-29T05:20:30.319Z", endTime :"2023-10-29T05:20:30.319Z", customer : "Billy S", otherNotes : "Blank"},
-//     {orderID : "bowl3#gh90   ", productName : "Stainless Steel Bowl", dueDate : "10/2/23", startTime : "2023-09-29T05:20:30.319Z", endTime :"2023-10-29T05:20:30.319Z", customer : "Billy S", otherNotes : "Blank"}
-// ];
-
-// let upcomingTasks = [ 
-//     {orderID : "safe2#ab12", productName : "Stainless Steel Safe", dueDate : "11/01/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
-//     {orderID : "safe2#ab100", productName : "Stainless Steel Safe", dueDate : "11/03/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
-//     {orderID : "chair2#cd34", productName : "Stainless Steel Chair", dueDate : "12/11/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
-//     {orderID : "plate2#ef45", productName : "Stainless Steel Plate", dueDate : "12/12/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
-//     {orderID : "bowl2#gh67", productName : "Stainless Steel Bowl", dueDate : "11/12/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
-//     {orderID : "safe4#ab34", productName : "Stainless Steel Safe", dueDate : "11/17/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
-//     {orderID : "chair4#cd56", productName : "Stainless Steel Chair", dueDate : "12/2/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
-//     {orderID : "plate4#ef710", productName : "Stainless Steel Plate", dueDate : "11/13/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
-//     {orderID : "bowl4#gh90   ", productName : "Stainless Steel Bowl", dueDate : "12/3/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"}
-// ];
-
 let historyTasks = [];
 let upcomingTasks = [];
-
-
-
 
 const upcomingSelectID = "upcomingTasksSelect";
 const upcomingTableBodyID = "upcomingTasksTableBody";
@@ -40,17 +14,7 @@ const tableIgnoreProps = ['customer', 'otherNotes', 'startTime', 'endTime'];
 // const dataSelectHTML = `<td><a onclick="fillModal(orderID)" href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>`;
 
 function updateOrders() {
-    // for (let i = 0; i < upcomingTasks.length; i++) {
-    //     let orderObj = upcomingTasks[i];
-    //     if (orderObj.endTime != null) {
-    //         console.log(orderObj);
-    //         console.log(i);
-    //         // upcomingTasks.pop(i);
-    //         upcomingTasks = upcomingTasks.slice(i);
-    //         upcomingTableBodyID
-    //         historyTasks.push(orderObj);
-    //     }
-    // }
+
 
     upcomingTasks = upcomingTasks.filter((taskObj) => {
         return taskObj.endTime === null
@@ -166,6 +130,48 @@ function searchOrder() {
     fillModal(orderID);
 }
 
+async function startTask() {
+    let orderID = document.getElementById("orderIDInput").value;
+    let task = upcomingTasks.find((obj) => {
+        return obj.orderID === orderID;
+    })
+    if (task === undefined || task.startTime !== null) {
+        alert("Already Started (or Not Found)");
+        return;
+    }
+    task.startTime = new Date();
+    try {
+        await fetch('/updateTask', {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(task)
+        });
+    } catch {
+        alert("Error Updating Task")
+    }
+}
+
+async function endTask() {
+    let orderID = document.getElementById("orderIDInput").value;
+    let task = upcomingTasks.find((obj) => {
+        return obj.orderID == orderID;
+    })
+    if (task === undefined || task.endTime !== null) {
+        alert("Already Ended (or Not Found)");
+        return;
+    }
+    task.endTime = new Date();
+    try {
+        await fetch('/updateTask', {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(task)
+        });
+    } catch {
+        alert("Error Updating Task")
+    }
+}
+
 async function createTask() {
     let orderIDInput = document.getElementById("orderIDInputCreate").value;
     let productNameInput = document.getElementById("productNameInputCreate").value;
@@ -184,12 +190,11 @@ async function createTask() {
     try {
         await fetch('/addTask', {
             method: 'POST',
-            headers: {'content-type': 'application/json'},
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(task)
         });
     } catch {
         alert("Error in Adding Task. Try again");
-        return;
     }
 }
 
@@ -305,35 +310,3 @@ async function updateWebpage() {
 }
 
 updateWebpage();
-
-
-
-
-// function sleep(ms) {
-//     return new Promise(resolve => setTimeout(resolve, ms));
-// }
-
-// async function createAndCompleteTasks() {
-//     let i = 0;
-//     while (true) {
-//         console.log(`Waiting 5 seconds...`);
-//         console.log(upcomingTasks);
-//         console.log(historyTasks);
-//         i += 2;
-//         await sleep(i * 5000);
-//         let date = new Date()
-//         date.setMonth(date.getMonth()+1);
-//         upcomingTasks.push({orderID : `NEW#${i}`, productName : "Stainless Steel Safe", 
-//             dueDate: date.toISOString(), startTime: null, endTime: null, customer:"Bob", otherNotes:"Test"});
-
-//         let task = upcomingTasks[0];
-//         task.startTime = date.toISOString();
-//         date.setMonth(date.getMonth()+1);
-//         task.endTime = date.toISOString();
-//         updateOrders();
-
-//         createRows("Current Week", upcomingTasks, "summaryTableBody");
-//     }
-// }
-
-// createAndCompleteTasks();
