@@ -1,25 +1,31 @@
-let historyTasks = [
-    {orderID : "safe#ab12", productName : "Stainless Steel Safe", dueDate : "10/25/23", startTime : "2023-09-29T05:20:30.319Z", endTime :"2023-10-29T05:20:30.319Z", customer : "Billy S", otherNotes : "Blank"},
-    {orderID : "chair#cd34", productName : "Stainless Steel Chair", dueDate : "10/11/23", startTime : "2023-09-29T05:20:30.319Z", endTime :"2023-10-29T05:20:30.319Z", customer : "Billy S", otherNotes : "Blank"},
-    {orderID : "plate#ef45", productName : "Stainless Steel Plate", dueDate : "10/12/23", startTime : "2023-09-29T05:20:30.319Z", endTime :"2023-10-29T05:20:30.319Z", customer : "Billy S", otherNotes : "Blank"},
-    {orderID : "bowl#gh67", productName : "Stainless Steel Bowl", dueDate : "8/10/23", startTime : "2023-09-29T05:20:30.319Z", endTime :"2023-10-29T05:20:30.319Z", customer : "Billy S", otherNotes : "Blank"},
-    {orderID : "safe3#ab34", productName : "Stainless Steel Safe", dueDate : "8/7/23", startTime : "2023-09-29T05:20:30.319Z", endTime :"2023-10-29T05:20:30.319Z", customer : "Billy S", otherNotes : "Blank"},
-    {orderID : "chair3#cd56", productName : "Stainless Steel Chair", dueDate : "10/2/23", startTime : "2023-09-29T05:20:30.319Z", endTime :"2023-10-29T05:20:30.319Z", customer : "Billy S", otherNotes : "Blank"},
-    {orderID : "plate3#ef710", productName : "Stainless Steel Plate", dueDate : "2/12/23", startTime : "2023-09-29T05:20:30.319Z", endTime :"2023-10-29T05:20:30.319Z", customer : "Billy S", otherNotes : "Blank"},
-    {orderID : "bowl3#gh90   ", productName : "Stainless Steel Bowl", dueDate : "10/2/23", startTime : "2023-09-29T05:20:30.319Z", endTime :"2023-10-29T05:20:30.319Z", customer : "Billy S", otherNotes : "Blank"}
-];
+// let historyTasks = [
+//     {orderID : "safe#ab12", productName : "Stainless Steel Safe", dueDate : "10/25/23", startTime : "2023-09-29T05:20:30.319Z", endTime :"2023-10-29T05:20:30.319Z", customer : "Billy S", otherNotes : "Blank"},
+//     {orderID : "chair#cd34", productName : "Stainless Steel Chair", dueDate : "10/11/23", startTime : "2023-09-29T05:20:30.319Z", endTime :"2023-10-29T05:20:30.319Z", customer : "Billy S", otherNotes : "Blank"},
+//     {orderID : "plate#ef45", productName : "Stainless Steel Plate", dueDate : "10/12/23", startTime : "2023-09-29T05:20:30.319Z", endTime :"2023-10-29T05:20:30.319Z", customer : "Billy S", otherNotes : "Blank"},
+//     {orderID : "bowl#gh67", productName : "Stainless Steel Bowl", dueDate : "8/10/23", startTime : "2023-09-29T05:20:30.319Z", endTime :"2023-10-29T05:20:30.319Z", customer : "Billy S", otherNotes : "Blank"},
+//     {orderID : "safe3#ab34", productName : "Stainless Steel Safe", dueDate : "8/7/23", startTime : "2023-09-29T05:20:30.319Z", endTime :"2023-10-29T05:20:30.319Z", customer : "Billy S", otherNotes : "Blank"},
+//     {orderID : "chair3#cd56", productName : "Stainless Steel Chair", dueDate : "10/2/23", startTime : "2023-09-29T05:20:30.319Z", endTime :"2023-10-29T05:20:30.319Z", customer : "Billy S", otherNotes : "Blank"},
+//     {orderID : "plate3#ef710", productName : "Stainless Steel Plate", dueDate : "2/12/23", startTime : "2023-09-29T05:20:30.319Z", endTime :"2023-10-29T05:20:30.319Z", customer : "Billy S", otherNotes : "Blank"},
+//     {orderID : "bowl3#gh90   ", productName : "Stainless Steel Bowl", dueDate : "10/2/23", startTime : "2023-09-29T05:20:30.319Z", endTime :"2023-10-29T05:20:30.319Z", customer : "Billy S", otherNotes : "Blank"}
+// ];
 
-let upcomingTasks = [
-    {orderID : "safe2#ab12", productName : "Stainless Steel Safe", dueDate : "11/01/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
-    {orderID : "safe2#ab100", productName : "Stainless Steel Safe", dueDate : "11/03/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
-    {orderID : "chair2#cd34", productName : "Stainless Steel Chair", dueDate : "12/11/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
-    {orderID : "plate2#ef45", productName : "Stainless Steel Plate", dueDate : "12/12/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
-    {orderID : "bowl2#gh67", productName : "Stainless Steel Bowl", dueDate : "11/12/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
-    {orderID : "safe4#ab34", productName : "Stainless Steel Safe", dueDate : "11/17/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
-    {orderID : "chair4#cd56", productName : "Stainless Steel Chair", dueDate : "12/2/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
-    {orderID : "plate4#ef710", productName : "Stainless Steel Plate", dueDate : "11/13/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
-    {orderID : "bowl4#gh90   ", productName : "Stainless Steel Bowl", dueDate : "12/3/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"}
-];
+// let upcomingTasks = [ 
+//     {orderID : "safe2#ab12", productName : "Stainless Steel Safe", dueDate : "11/01/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
+//     {orderID : "safe2#ab100", productName : "Stainless Steel Safe", dueDate : "11/03/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
+//     {orderID : "chair2#cd34", productName : "Stainless Steel Chair", dueDate : "12/11/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
+//     {orderID : "plate2#ef45", productName : "Stainless Steel Plate", dueDate : "12/12/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
+//     {orderID : "bowl2#gh67", productName : "Stainless Steel Bowl", dueDate : "11/12/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
+//     {orderID : "safe4#ab34", productName : "Stainless Steel Safe", dueDate : "11/17/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
+//     {orderID : "chair4#cd56", productName : "Stainless Steel Chair", dueDate : "12/2/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
+//     {orderID : "plate4#ef710", productName : "Stainless Steel Plate", dueDate : "11/13/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"},
+//     {orderID : "bowl4#gh90   ", productName : "Stainless Steel Bowl", dueDate : "12/3/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"}
+// ];
+
+let historyTasks = [];
+let upcomingTasks = [];
+
+
+
 
 const upcomingSelectID = "upcomingTasksSelect";
 const upcomingTableBodyID = "upcomingTasksTableBody";
@@ -160,7 +166,7 @@ function searchOrder() {
     fillModal(orderID);
 }
 
-function createTask() {
+async function createTask() {
     let orderIDInput = document.getElementById("orderIDInputCreate").value;
     let productNameInput = document.getElementById("productNameInputCreate").value;
     let dueDateInput = document.getElementById("dueDateInputCreate").value;
@@ -170,12 +176,21 @@ function createTask() {
         || dueDateInput == "" || customerInput == "") {
             alert("Missing Item");
             return;
-        }
-    upcomingTasks.push({orderID : orderIDInput, productName : productNameInput, 
-        dueDate : dueDateInput, customer : customerInput, otherNotes : otherNotesInput});
-    
-    historyTasks.push({orderID : orderIDInput, productName : productNameInput, 
-        dueDate : dueDateInput, customer : customerInput, otherNotes : otherNotesInput});
+    }
+
+    let task = {orderID : orderIDInput, productName : productNameInput, 
+        dueDate : dueDateInput, customer : customerInput, otherNotes : otherNotesInput}
+
+    try {
+        await fetch('/addTask', {
+            method: 'POST',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify(task)
+        });
+    } catch {
+        alert("Error in Adding Task. Try again");
+        return;
+    }
 }
 
 
@@ -209,7 +224,6 @@ function createRows(selectOption, tableData, tableBodyID) {
             tableRowTag.appendChild(tableDataCell);
         }
         let detailElem = document.createElement("td");
-        // detailElem.innerHTML = dataSelectHTML
         detailElem.innerHTML = `<td><a onclick="fillModal('${orderID}')" href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>`;
 
         tableRowTag.appendChild(detailElem)
@@ -217,68 +231,109 @@ function createRows(selectOption, tableData, tableBodyID) {
     });
 }
 
-
-
-
-let selectHistoryTag = document.getElementById(historySelectID);
-selectHistoryTag.onchange = () => {
-    historyTasks.sort((a, b) => {
-        return ((new Date(b.dueDate)).getTime() - (new Date(a.dueDate)).getTime());
-    });
-    createRows(selectHistoryTag.options[selectHistoryTag.selectedIndex].value, historyTasks, historyTableBodyID);
+function displayQuote(data) {
+    const defaultQuote = `“Computers are incredibly fast, accurate, and stupid. Human beings are incredibly slow, 
+    inaccurate, and brilliant. Together they are powerful beyond imagination.”- Albert Einstein`;
+    fetch('https://api.quotable.io/random')
+      .then((response) => response.json())
+      .then((data) => {
+        const quoteParagraph = document.getElementById("quote");
+        quoteParagraph.innerText = data.content + " -" + data.author;
+        })
+    .catch((data) => {
+        const quoteParagraph = document.getElementById("quote");
+        quoteParagraph.innerText = defaultQuote;
+    })
 }
 
-let selectHistoryTagModal = document.getElementById(historySelectEmp);
-if (selectHistoryTagModal != null) {
-    selectHistoryTagModal.onchange = () => {
+displayQuote();
+
+
+async function loadData() {
+    let response = await fetch(`/getPastTasks`)
+    historyTasks = await response.json();
+    console.log(historyTasks)
+
+    response = await fetch(`/getFutureTasks`);
+    upcomingTasks = await response.json();
+    console.log(upcomingTasks)
+
+
+    let selectHistoryTag = document.getElementById(historySelectID);
+    selectHistoryTag.onchange = () => {
         historyTasks.sort((a, b) => {
             return ((new Date(b.dueDate)).getTime() - (new Date(a.dueDate)).getTime());
         });
-        createRows(selectHistoryTag.options[selectHistoryTag.selectedIndex].value, historyTableBodyIDEmp, historyTableBodyID);    
+        createRows(selectHistoryTag.options[selectHistoryTag.selectedIndex].value, historyTasks, historyTableBodyID);
     }
-}
 
-let selectUpcomingTag = document.getElementById(upcomingSelectID);
-selectUpcomingTag.onchange = () => {
-    upcomingTasks.sort((a, b) => {
-        return ((new Date(a.dueDate)).getTime() - (new Date(b.dueDate)).getTime());
-    });
-    createRows(selectUpcomingTag.options[selectUpcomingTag.selectedIndex].value, upcomingTasks, upcomingTableBodyID);
-}
+    let selectHistoryTagModal = document.getElementById(historySelectEmp);
+    if (selectHistoryTagModal != null) {
+        selectHistoryTagModal.onchange = () => {
+            historyTasks.sort((a, b) => {
+                return ((new Date(b.dueDate)).getTime() - (new Date(a.dueDate)).getTime());
+            });
+            createRows(selectHistoryTag.options[selectHistoryTag.selectedIndex].value, historyTableBodyIDEmp, historyTableBodyID);    
+        }
+    }
 
-let summaryTableBodyTag = document.getElementById("summaryTableBody");
-upcomingTasks.sort((a, b) => {
-    return ((new Date(a.dueDate)).getTime() - (new Date(b.dueDate)).getTime());
-});
-createRows("Current Week", upcomingTasks, "summaryTableBody");
+    let selectUpcomingTag = document.getElementById(upcomingSelectID);
+    selectUpcomingTag.onchange = () => {
+        upcomingTasks.sort((a, b) => {
+            return ((new Date(a.dueDate)).getTime() - (new Date(b.dueDate)).getTime());
+        });
+        createRows(selectUpcomingTag.options[selectUpcomingTag.selectedIndex].value, upcomingTasks, upcomingTableBodyID);
+    }
 
-
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function createAndCompleteTasks() {
-    let i = 0;
-    while (true) {
-        console.log(`Waiting 5 seconds...`);
-        console.log(upcomingTasks);
-        console.log(historyTasks);
-        i += 2;
-        await sleep(i * 5000);
-        let date = new Date()
-        date.setMonth(date.getMonth()+1);
-        upcomingTasks.push({orderID : `NEW#${i}`, productName : "Stainless Steel Safe", 
-            dueDate: date.toISOString(), startTime: null, endTime: null, customer:"Bob", otherNotes:"Test"});
-
-        let task = upcomingTasks[0];
-        task.startTime = date.toISOString();
-        date.setMonth(date.getMonth()+1);
-        task.endTime = date.toISOString();
-        updateOrders();
-
+    try {
+        // let summaryTableBodyTag = document.getElementById("summaryTableBody");
+        upcomingTasks.sort((a, b) => {
+            return ((new Date(a.dueDate)).getTime() - (new Date(b.dueDate)).getTime());
+        });
         createRows("Current Week", upcomingTasks, "summaryTableBody");
+    } catch {
+        console.log("summary table does not exist")
     }
 }
 
-createAndCompleteTasks();
+async function updateWebpage() {
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+    while (true) {
+        loadData();
+        await delay(5000);
+    }
+}
+
+updateWebpage();
+
+
+
+
+// function sleep(ms) {
+//     return new Promise(resolve => setTimeout(resolve, ms));
+// }
+
+// async function createAndCompleteTasks() {
+//     let i = 0;
+//     while (true) {
+//         console.log(`Waiting 5 seconds...`);
+//         console.log(upcomingTasks);
+//         console.log(historyTasks);
+//         i += 2;
+//         await sleep(i * 5000);
+//         let date = new Date()
+//         date.setMonth(date.getMonth()+1);
+//         upcomingTasks.push({orderID : `NEW#${i}`, productName : "Stainless Steel Safe", 
+//             dueDate: date.toISOString(), startTime: null, endTime: null, customer:"Bob", otherNotes:"Test"});
+
+//         let task = upcomingTasks[0];
+//         task.startTime = date.toISOString();
+//         date.setMonth(date.getMonth()+1);
+//         task.endTime = date.toISOString();
+//         updateOrders();
+
+//         createRows("Current Week", upcomingTasks, "summaryTableBody");
+//     }
+// }
+
+// createAndCompleteTasks();

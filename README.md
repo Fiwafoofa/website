@@ -85,9 +85,9 @@ For this deliverable I added backend endpoints that receives product and group i
 
 - **Node.js/Express HTTP service** - done!
 - **Static middleware for frontend** - done!
-- **Calls to third party endpoints** - I didn't have time to implement this. 
+- **Calls to third party endpoints** - Grabbed a quote from a third party end point and incorporated it into the footing of my website.
 - **Backend service endpoints** - Placeholders for login that stores the current user on the server. Endpoints for product information.
-- **Frontend calls service endpoints** - I did this using the fetch function.
+- **Frontend calls service endpoints** - I did this using the fetch function whenever I needed to register/get users and when I need to any CRUD operations on my orders.
 
 ## DB deliverable (yeah I don't know what the idea behind this deliverable stuff is, but I did not do anything!)
 
