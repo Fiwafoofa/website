@@ -14,8 +14,6 @@ const tableIgnoreProps = ['customer', 'otherNotes', 'startTime', 'endTime'];
 // const dataSelectHTML = `<td><a onclick="fillModal(orderID)" href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>`;
 
 function updateOrders() {
-
-
     upcomingTasks = upcomingTasks.filter((taskObj) => {
         return taskObj.endTime === null
     });    
@@ -174,7 +172,7 @@ async function endTask() {
     }
 }
 
-async function createTask() {
+async function createTask() {   
     let orderIDInput = document.getElementById("orderIDInputCreate").value;
     let productNameInput = document.getElementById("productNameInputCreate").value;
     let dueDateInput = document.getElementById("dueDateInputCreate").value;
@@ -184,6 +182,12 @@ async function createTask() {
         || dueDateInput == "" || customerInput == "") {
             alert("Missing Item");
             return;
+    }
+    const todayDate = new Date();
+    const taskDate = new Date(dueDateInput);
+    if (taskDate < todayDate) {
+        alert("Previous Date");
+        return;
     }
 
     let task = {orderID : orderIDInput, productName : productNameInput, 
@@ -199,8 +203,6 @@ async function createTask() {
         alert("Error in Adding Task. Try again");
     }
 }
-
-
 
 function createRows(selectOption, tableData, tableBodyID) {
     // updateOrders();

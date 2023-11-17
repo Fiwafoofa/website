@@ -47,7 +47,8 @@
                     <input type="password" id="register-password-input" class="form-control" />
                     <label class="form-label" for="register-password-input">Password</label>
                 </div>
-                <div class="form-check form-check-inline">
+
+                <div class="form-check form-check-inline radio">
                     <input id="registerRoleEmp" class="form-check-input" type="radio" name="inlineRadioOptions" value="Employee">
                     <label class="form-check-label" for="registerRoleEmp">Employee</label>
                   </div>
@@ -55,6 +56,14 @@
                     <input id="registerRoleMan" class="form-check-input" type="radio" name="inlineRadioOptions" value="Manager">
                     <label class="form-check-label" for="registerRoleMan">Manager</label>
                   </div>
+
+                <div class="form-outline mb-4">
+                    <input type="text" id="group-id-input" class="form-control" />
+                    <label class="form-label" for="group-id-input">Group ID if Employee (you must specify a group ID provided by
+                        your manager).
+                    </label>
+                </div>
+
                 <button onclick="register()" type="submit" class="btn btn-primary btn-block mb-4">Register</button>    
             <!-- </form> -->
         </div>

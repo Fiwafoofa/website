@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const DB = require('./database.js');
 
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
@@ -31,17 +32,46 @@ let upcomingTasks = [
   {orderID : "bowl4#gh90   ", productName : "Stainless Steel Bowl", dueDate : "12/3/23", startTime : null, endTime : null, customer : "Billy S", otherNotes : "Blank"}
 ];
 
-let registeredUsers = [
-  {email : "test" , password : "test", role : "Manager"},
-  {email : "test2" , password : "test2", role : "Employee"}
-]
 
-app.post(`/registerUser`, (req, res) => {
-  registeredUsers.push(req.body);
-  res.send();
+
+
+app.post(`/registerUser`, async (req, res) => {
+
+  console.log(req.body)
+  const registeredUsers = await DB.findAllUsers();
+  if (req.body.role === "Employee") {
+    for (userObj of registeredUsers) {
+      if (userObj.role !== "Manager") {
+        continue;
+      }
+      if (userObj.groupID === req.body.groupID) {
+
+        for (groupUserObj of registeredUsers) {
+          if (groupUserObj.email === req.body.email) {
+            res.sendStatus(400);
+            return;
+          }
+        }
+        await DB.addUser(req.body);
+        res.send();
+        return;
+      }
+    }
+  
+  } else {
+    for (groupUserObj of registeredUsers) {
+      if (groupUserObj.email === req.body.email) {
+        res.sendStatus(400);
+        return;
+      }
+    }
+    res.send();
+    return;
+  }
 });
 
-app.get(`/getUsers`, (req, res) => {
+app.get(`/getUsers`, async (req, res) => {
+  const registeredUsers = await DB.findAllUsers();
   res.send(registeredUsers)
 });
 
