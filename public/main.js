@@ -10,6 +10,11 @@ const historySelectEmp = "historyTasksSelectEmployee";
 const historyTableBodyIDEmp = "historyTasksTableBodyEmployee";
 const tableIgnoreProps = ['customer', 'otherNotes', 'startTime', 'endTime'];
 
+const urlParams = new URLSearchParams(window.location.search);
+const groupID = urlParams.get('groupID');
+const groupIDTag = document.getElementById('group-id');
+groupIDTag.innerText = `Group ID: ${groupID}`;
+
 
 // const dataSelectHTML = `<td><a onclick="fillModal(orderID)" href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>`;
 
@@ -191,7 +196,8 @@ async function createTask() {
     }
 
     let task = {orderID : orderIDInput, productName : productNameInput, 
-        dueDate : dueDateInput, customer : customerInput, otherNotes : otherNotesInput}
+        dueDate : dueDateInput, customer : customerInput, otherNotes : otherNotesInput, groupID: groupID}
+    console.log(task);
 
     try {
         await fetch('/addTask', {
@@ -259,6 +265,9 @@ displayQuote();
 
 
 async function loadData() {
+
+    
+
     let response = await fetch(`/getPastTasks`)
     historyTasks = await response.json();
     console.log(historyTasks)
@@ -306,11 +315,14 @@ async function loadData() {
 }
 
 async function updateWebpage() {
+
     const delay = ms => new Promise(res => setTimeout(res, ms));
     while (true) {
         loadData();
         await delay(5000);
     }
 }
+
+console.log()
 
 updateWebpage();

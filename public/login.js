@@ -1,20 +1,3 @@
-function generateUUID() { // Public Domain/MIT
-    var d = new Date().getTime();//Timestamp
-    var d2 = ((typeof performance !== 'undefined') && performance.now && (performance.now()*1000)) || 0;//Time in microseconds since page-load or 0 if unsupported
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = Math.random() * 16;//random number between 0 and 16
-        if(d > 0){//Use timestamp until depleted
-            r = (d + r)%16 | 0;
-            d = Math.floor(d/16);
-        } else {//Use microseconds since page-load if supported
-            r = (d2 + r)%16 | 0;
-            d2 = Math.floor(d2/16);
-        }
-        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-    });
-}
-
-
 const loginEmailID = "login-email-input";
 const loginPasswordID = "login-password-input";
 const registerEmailID = "register-email-input";
@@ -32,26 +15,25 @@ async function login() {
     }
 
     try {
-        const response = await fetch('/getUsers');
-        registeredUsers = await response.json();
-        let user = registeredUsers.find((obj) => {
-            return obj.email == emailInput;
+        const user = {email: emailInput, password: passwordInput};
+        let response = await fetch('/login', {
+            method: 'POST',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify(user)
         });
-
-        if (user == null) {
-            alert("Invalid Email Address or Password");
+        let body = await response.json();
+        if (response.status === 401) {
+            alert("Error in Registering. Try again");
             return;
         }
+        console.log(body.groupID);
 
-        if (passwordInput != user.password) {
-            alert("Invalid Email Address or Password");
-            return;
-        }
 
-        if (user.role == "Employee") {
-            window.location.href = "employee.html";
+
+        if (body.role == "Employee") {
+            window.location.href = `/employee.html?groupID=${body.groupID}`;
         } else {
-            window.location.href = "dashboard.html"
+            window.location.href = `/dashboard.html?groupID=${body.groupID}`;
         }
     } catch {
         alert("Failure to Login. Try Again");
@@ -74,9 +56,6 @@ async function register() {
         alert("Missing Email Address, Password, or Role");
         return;
     }
-    if (roleInputValue == "Manager") {
-        groupIDInput = generateUUID();
-    }
 
     let user = {email : emailInput, password : passwordInput, role : roleInputValue, groupID: groupIDInput};
     try {
@@ -86,17 +65,18 @@ async function register() {
             body: JSON.stringify(user)
         });
         console.log(response);
+        let body = await response.json();
         if (response.status === 400) {
             alert("Error in Registering. Try again");
             return;
         }
 
 
-        // if (roleInputValue == "Employee") {
-        //     window.location.href = "employee.html";
-        // } else {
-        //     window.location.href = "dashboard.html"
-        // }
+        if (user.role == "Employee") {
+            window.location.href = `/employee.html?groupID=${body.groupID}`;
+        } else {
+            window.location.href = `/dashboard.html?groupID=${body.groupID}`;
+        }
     } catch {
         alert("Error in Registering. Try again");
         return;
@@ -121,4 +101,3 @@ function displayQuote() {
 }
 
 displayQuote();
-

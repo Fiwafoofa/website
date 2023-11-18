@@ -7,6 +7,7 @@ const db = client.db('PTracker');
 const users = db.collection('users');
 const futureOrders = db.collection('futureOrders');
 const pastOrders = db.collection('pastOrders');
+const authTokens = db.collection('authTokens'); // {authtoken, username}
 
 (async function testConnection() {
   await client.connect();
@@ -26,26 +27,31 @@ function findAllUsers() {
   return users.find().toArray();
 }
 
-async function addFutureOrder(orderObj) {
+function getUser(email) {
+  return users.findOne({ email: email });
+}
+
+async function addAuthToken(authToken) {
+  return await authTokens.insertOne(authToken);
+}
+
+function getAuthToken(authToken) {
+  return authTokens.findOne( {authToken: authToken.authToken});
+}
+
+async function addOrder(orderObj) {
   return await futureOrders.insertOne(orderObj);
 }
 
-function getAllFutureOrders() {
-
+function getAllOrders(groupID) {
+  return users.find( { groupID: groupID} ).toArray();
 }
 
-async function addPastOrder(orderObj) {
-  return await pastOrders.insertOne(orderObj);
-}
-
-function getAllPastOrders(orderObj) {
-  
-}
 
 async function updateOrder(orderID, orderObj) {
   return await futureOrders.updateOne({ orderID : orderID}, 
     { $set: {productName: orderObj.productName, dueDate: orderObj.dueDate, startTime: orderObj.startTime, endTime: orderObj.endTime, 
-      customer: orderObj.customer, otherNotes: orderObj.otherNotes}});
+      customer: orderObj.customer, otherNotes: orderObj.otherNotes, orderID: orderObj.orderID}});
 } 
 
 
@@ -63,4 +69,4 @@ async function updateOrder(orderID, orderObj) {
 })();
 
 // client.close()
-module.exports = { addUser, findAllUsers};
+module.exports = { addUser, findAllUsers, getUser, addAuthToken, getAuthToken, addOrder, getAllOrders, updateOrder };

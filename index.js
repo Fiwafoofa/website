@@ -1,12 +1,20 @@
 const express = require('express');
 const app = express();
 const DB = require('./database.js');
+const uuid = require('uuid');
+const bcrypt = require('bcrypt');
+const cookieParser = require('cookie-parser');
 
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
 app.use(express.json());
-
 app.use(express.static('public'));
+app.use(cookieParser());
+
+const path = require('path');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+app.set('views', path.join(__dirname, 'public'));
 
 
 let pastTasks = [
@@ -33,11 +41,18 @@ let upcomingTasks = [
 ];
 
 
+// app.get('/dashboard', (req, res) => {
+//   const data = {
+//     email: "TEST",
+//     password: "ALSO TEST"
+//   };
+
+//   res.render('dashboard', { data });
+// });
 
 
 app.post(`/registerUser`, async (req, res) => {
-
-  console.log(req.body)
+  req.body.password = await bcrypt.hash(req.body.password, 10);
   const registeredUsers = await DB.findAllUsers();
   if (req.body.role === "Employee") {
     for (userObj of registeredUsers) {
@@ -48,12 +63,14 @@ app.post(`/registerUser`, async (req, res) => {
 
         for (groupUserObj of registeredUsers) {
           if (groupUserObj.email === req.body.email) {
+            console.log("SCUCESffff");
             res.sendStatus(400);
             return;
           }
         }
+        console.log("SCUCES");
         await DB.addUser(req.body);
-        res.send();
+        res.json({groupID: req.body.groupID})
         return;
       }
     }
@@ -65,41 +82,84 @@ app.post(`/registerUser`, async (req, res) => {
         return;
       }
     }
-    res.send();
+
+    req.body.groupID = uuid.v4();
+    await DB.addUser(req.body);
+    res.json({groupID: req.body.groupID})
+    // res.send( {authToken: authTokenID, email: req.body.email} );
+    // res.sendFile(path.join('./public/dashboard.html'), { authTokenID });
+    
     return;
   }
 });
 
-app.get(`/getUsers`, async (req, res) => {
-  const registeredUsers = await DB.findAllUsers();
-  res.send(registeredUsers)
-});
+function setAuthCookie(res, authToken) {
+  res.cookie('token', authToken, {
+    secure: true,
+    httpOnly: true,
+    sameSite: 'strict',
+  });
+}
 
-app.post(`/addTask`, (req, res) => {
-  let taskDate = new Date(req.body.dueDate);
-  let todayDate = new Date();
-  if (taskDate < todayDate) {
-    pastTasks.push(req.body)
-  } else {
-    upcomingTasks.push(req.body)
+app.post(`/login`,async (req, res) => {
+  const user = await DB.getUser(req.body.email);
+  let authTokenID = uuid.v4();
+  if (user) {
+    if (await bcrypt.compare(req.body.password, user.password)) {
+      setAuthCookie(res, authTokenID);
+      res.json({groupID: user.groupID, role: user.role});
+      return;
+    }
   }
-  res.send()
+  res.status(401).send({ msg: 'Unauthorized' });
 });
 
-app.get(`/getPastTasks`, (req, res) => {
+
+
+app.post(`/addTask`, async (req, res) => {
+  let order = req.body;
+  return await DB.addOrder(order);
+});
+
+app.get(`/getPastTasks`, async (req, res) => {
+  let groupID = req.body.groupID;
+  const tasks = await DB.getAllOrders(); 
+  let todayDate = new Date();
+  let taskDate = null;
+  let pastTasks = [];
+  for (let task of tasks) {
+    taskDate = new Date(task.dueDate);
+    if (taskDate < todayDate && task.groupID === groupID) {
+      pastTasks.push(task);
+    }
+  }
   res.send(pastTasks);
 });
 
-app.get(`/getFutureTasks`, (req, res) => {
-  res.send(upcomingTasks);
+app.get(`/getFutureTasks`, async (req, res) => {
+  let groupID = req.body.groupID;
+  const tasks = await DB.getAllOrders(); 
+  let todayDate = new Date();
+  let taskDate = null;
+  let futureTasks = [];
+  for (let task of tasks) {
+    taskDate = new Date(task.dueDate);
+    if (taskDate >= todayDate && task.groupID === groupID) {
+      pastTasks.push(task);
+    }
+  }
+  res.send(futureTasks);
 });
 
-app.put(`/updateTask`, (req, res) => {
+app.put(`/updateTask`, async (req, res) => {
   let orderID = req.body.orderID;
-  upcomingTasks = upcomingTasks.filter((obj) => {
-    return obj.orderID != orderID;
-  })
-  upcomingTasks.push(req.body);
+  let orderObj = req.body;
+  await DB.updateOrder(orderID, orderObj);
+  // upcomingTasks = upcomingTasks.filter((obj) => {
+  //   return obj.orderID != orderID;
+  // })
+  // upcomingTasks.push(req.body);
+
   res.send();
 });
 
