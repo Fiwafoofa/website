@@ -43,8 +43,15 @@ async function addOrder(orderObj) {
   return await futureOrders.insertOne(orderObj);
 }
 
-function getAllOrders(groupID) {
-  return users.find( { groupID: groupID} ).toArray();
+async function getAllOrders(groupID) {
+  let futureTasks = await futureOrders.find( { groupID: groupID} ).toArray();
+  let pastTasks = await pastOrders.find( {groupID: groupID});
+  return futureTasks.concat(pastTasks);
+  // return (futureOrders.find( { groupID: groupID} ).toArray() + pastOrders.find( {groupID: groupID}));
+}
+
+function getOrder(orderID, groupID) {
+  return futureOrders.findOne( {orderID: orderID, groupID: groupID} );
 }
 
 
@@ -69,4 +76,4 @@ async function updateOrder(orderID, orderObj) {
 })();
 
 // client.close()
-module.exports = { addUser, findAllUsers, getUser, addAuthToken, getAuthToken, addOrder, getAllOrders, updateOrder };
+module.exports = { addUser, findAllUsers, getUser, addAuthToken, getAuthToken, addOrder, getAllOrders, updateOrder, getOrder };

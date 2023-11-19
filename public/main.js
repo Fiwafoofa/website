@@ -8,10 +8,14 @@ const historyTableBodyID = "historyTasksTableBody";
 
 const historySelectEmp = "historyTasksSelectEmployee";
 const historyTableBodyIDEmp = "historyTasksTableBodyEmployee";
-const tableIgnoreProps = ['customer', 'otherNotes', 'startTime', 'endTime'];
+const tableIgnoreProps = ['customer', 'otherNotes', 'startTime', 'endTime', 'groupID', '_id'];
 
 const urlParams = new URLSearchParams(window.location.search);
 const groupID = urlParams.get('groupID');
+if (groupID === undefined || groupID === null || groupID === "") {
+    alert("Not authorized");
+    window.location.href = `index.html`;
+}
 const groupIDTag = document.getElementById('group-id');
 groupIDTag.innerText = `Group ID: ${groupID}`;
 
@@ -135,9 +139,14 @@ function searchOrder() {
 
 async function startTask() {
     let orderID = document.getElementById("orderIDInput").value;
+    console.log("----------------");
+    console.log(orderID);
+    console.log(upcomingTasks);
     let task = upcomingTasks.find((obj) => {
+        
         return obj.orderID === orderID;
-    })
+    });
+    console.log(task);
     if (task === undefined || task.startTime !== null) {
         alert("Already Started (or Not Found)");
         return;
@@ -196,15 +205,17 @@ async function createTask() {
     }
 
     let task = {orderID : orderIDInput, productName : productNameInput, 
-        dueDate : dueDateInput, customer : customerInput, otherNotes : otherNotesInput, groupID: groupID}
-    console.log(task);
+        dueDate : dueDateInput, customer : customerInput, otherNotes : otherNotesInput, groupID: groupID, startTime: null, endTime: null};
 
     try {
-        await fetch('/addTask', {
+        let res = await fetch('/addTask', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(task)
         });
+        if (res.status === 400) {
+            alert("Duplicate OrderID");
+        }
     } catch {
         alert("Error in Adding Task. Try again");
     }
@@ -265,17 +276,23 @@ displayQuote();
 
 
 async function loadData() {
-
-    
-
-    let response = await fetch(`/getPastTasks`)
+    let response = await fetch(`/getPastTasks`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({groupID: groupID})
+    })
     historyTasks = await response.json();
+    historyTasks = historyTasks.pastTasks;
     console.log(historyTasks)
 
-    response = await fetch(`/getFutureTasks`);
+    response = await fetch(`/getFutureTasks`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({groupID: groupID})
+    });
     upcomingTasks = await response.json();
+    upcomingTasks = upcomingTasks.futureTasks;
     console.log(upcomingTasks)
-
 
     let selectHistoryTag = document.getElementById(historySelectID);
     selectHistoryTag.onchange = () => {
@@ -308,7 +325,12 @@ async function loadData() {
         upcomingTasks.sort((a, b) => {
             return ((new Date(a.dueDate)).getTime() - (new Date(b.dueDate)).getTime());
         });
+        historyTasks.sort((a, b) => {
+            return ((new Date(b.dueDate)).getTime() - (new Date(a.dueDate)).getTime());
+        });
         createRows("Current Week", upcomingTasks, "summaryTableBody");
+        createRows(selectUpcomingTag.options[selectUpcomingTag.selectedIndex].value, upcomingTasks, upcomingTableBodyID);
+        createRows(selectHistoryTag.options[selectHistoryTag.selectedIndex].value, historyTasks, historyTableBodyID);
     } catch {
         console.log("summary table does not exist")
     }
@@ -322,7 +344,5 @@ async function updateWebpage() {
         await delay(5000);
     }
 }
-
-console.log()
 
 updateWebpage();

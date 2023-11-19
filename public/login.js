@@ -26,10 +26,7 @@ async function login() {
             alert("Error in Registering. Try again");
             return;
         }
-        console.log(body.groupID);
-
-
-
+        
         if (body.role == "Employee") {
             window.location.href = `/employee.html?groupID=${body.groupID}`;
         } else {
