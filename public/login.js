@@ -26,11 +26,11 @@ async function login() {
             alert("Error in Registering. Try again");
             return;
         }
-        
+
         if (body.role == "Employee") {
-            window.location.href = `/employee.html?groupID=${body.groupID}`;
+            window.location.href = `/employee.html?groupID=${body.groupID}&authToken=${body.authToken}`;
         } else {
-            window.location.href = `/dashboard.html?groupID=${body.groupID}`;
+            window.location.href = `/dashboard.html?groupID=${body.groupID}&authToken=${body.authToken}`;
         }
     } catch {
         alert("Failure to Login. Try Again");
@@ -61,18 +61,16 @@ async function register() {
             headers: {'content-type': 'application/json'},
             body: JSON.stringify(user)
         });
-        console.log(response);
         let body = await response.json();
         if (response.status === 400) {
             alert("Error in Registering. Try again");
             return;
         }
 
-
         if (user.role == "Employee") {
-            window.location.href = `/employee.html?groupID=${body.groupID}`;
+            window.location.href = `/employee.html?groupID=${body.groupID}&authToken=${body.authToken}`;
         } else {
-            window.location.href = `/dashboard.html?groupID=${body.groupID}`;
+            window.location.href = `/dashboard.html?groupID=${body.groupID}&authToken=${body.authToken}`;
         }
     } catch {
         alert("Error in Registering. Try again");

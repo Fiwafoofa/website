@@ -7,7 +7,7 @@ const db = client.db('PTracker');
 const users = db.collection('users');
 const futureOrders = db.collection('futureOrders');
 const pastOrders = db.collection('pastOrders');
-const authTokens = db.collection('authTokens'); // {authtoken, username}
+const authTokens = db.collection('authTokens'); 
 
 (async function testConnection() {
   await client.connect();
@@ -35,8 +35,12 @@ async function addAuthToken(authToken) {
   return await authTokens.insertOne(authToken);
 }
 
-function getAuthToken(authToken) {
-  return authTokens.findOne( {authToken: authToken.authToken});
+function getAuthToken(authTokenID) {
+  return authTokens.findOne( {authToken: authTokenID});
+}
+
+function deleteAuthToken(authTokenID) {
+  return authTokens.deleteOne( {authToken: authTokenID})  
 }
 
 async function addOrder(orderObj) {
@@ -61,19 +65,4 @@ async function updateOrder(orderID, orderObj) {
       customer: orderObj.customer, otherNotes: orderObj.otherNotes, orderID: orderObj.orderID}});
 } 
 
-
-
-(async function () {
-  // await testConnection();
-  // await addUser("bob5", '123', "Employee", '32132dasd');
-  
-  // findAllUsers()
-  //   .then(users => console.log(users))
-  //   .catch(error => console.error(error))
-  // console.log(isValidGroup("62974d9f-2c3f-456c3b-78298b441e53"))
-     
-    
-})();
-
-// client.close()
-module.exports = { addUser, findAllUsers, getUser, addAuthToken, getAuthToken, addOrder, getAllOrders, updateOrder, getOrder };
+module.exports = { addUser, findAllUsers, getUser, addAuthToken, getAuthToken, addOrder, getAllOrders, updateOrder, getOrder, deleteAuthToken };

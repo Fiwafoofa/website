@@ -10,12 +10,36 @@ const historySelectEmp = "historyTasksSelectEmployee";
 const historyTableBodyIDEmp = "historyTasksTableBodyEmployee";
 const tableIgnoreProps = ['customer', 'otherNotes', 'startTime', 'endTime', 'groupID', '_id'];
 
+async function validateAuthToken(authToken) {
+    let response = await fetch(`/validateAuthToken`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({authToken: authToken})
+    });
+    if (response.status === 400) {
+        alert("Not Authorized");
+        window.location.href = `index.html`;
+        return false;
+    }
+    return true;
+}
+
+// VALIDATE USER
 const urlParams = new URLSearchParams(window.location.search);
 const groupID = urlParams.get('groupID');
 if (groupID === undefined || groupID === null || groupID === "") {
-    alert("Not authorized");
+    alert("Not Authorized");
     window.location.href = `index.html`;
 }
+const authToken = urlParams.get('authToken');
+if (authToken === undefined || authToken === null || authToken === "") {
+    alert("Not Authorized");
+    window.location.href = `index.html`;
+}
+validateAuthToken(authToken).then(result => {
+    console.log("Valid Auth");
+});
+
 const groupIDTag = document.getElementById('group-id');
 groupIDTag.innerText = `Group ID: ${groupID}`;
 
@@ -274,6 +298,13 @@ function displayQuote(data) {
 
 displayQuote();
 
+async function logout() {
+    let response = await fetch(`/logout`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({authToken: authToken})
+    });
+}
 
 async function loadData() {
     let response = await fetch(`/getPastTasks`, {
@@ -320,17 +351,18 @@ async function loadData() {
         createRows(selectUpcomingTag.options[selectUpcomingTag.selectedIndex].value, upcomingTasks, upcomingTableBodyID);
     }
 
+
+    upcomingTasks.sort((a, b) => {
+        return ((new Date(a.dueDate)).getTime() - (new Date(b.dueDate)).getTime());
+    });
+    historyTasks.sort((a, b) => {
+        return ((new Date(b.dueDate)).getTime() - (new Date(a.dueDate)).getTime());
+    });
+    createRows(selectUpcomingTag.options[selectUpcomingTag.selectedIndex].value, upcomingTasks, upcomingTableBodyID);
+    createRows(selectHistoryTag.options[selectHistoryTag.selectedIndex].value, historyTasks, historyTableBodyID);
     try {
         // let summaryTableBodyTag = document.getElementById("summaryTableBody");
-        upcomingTasks.sort((a, b) => {
-            return ((new Date(a.dueDate)).getTime() - (new Date(b.dueDate)).getTime());
-        });
-        historyTasks.sort((a, b) => {
-            return ((new Date(b.dueDate)).getTime() - (new Date(a.dueDate)).getTime());
-        });
         createRows("Current Week", upcomingTasks, "summaryTableBody");
-        createRows(selectUpcomingTag.options[selectUpcomingTag.selectedIndex].value, upcomingTasks, upcomingTableBodyID);
-        createRows(selectHistoryTag.options[selectHistoryTag.selectedIndex].value, historyTasks, historyTableBodyID);
     } catch {
         console.log("summary table does not exist")
     }
