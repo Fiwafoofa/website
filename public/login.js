@@ -50,11 +50,17 @@ async function register() {
     let roleInputValue = (roleInputEmp.checked != false) ? roleInputEmp.value : roleInputMan.value;
 
     if (emailInput == "" || passwordInput == "" || roleInputChecked == false) {
-        alert("Missing Email Address, Password, or Role");
+        alert("Missing Email Address, Password, Role, or Group ID");
         return;
     }
 
     let user = {email : emailInput, password : passwordInput, role : roleInputValue, groupID: groupIDInput};
+
+    if (user.role == "Employee" && groupIDInput == "") {
+        alert("Missing Group ID");
+        return;
+    }
+
     try {
         let response = await fetch('/registerUser', {
             method: 'POST',

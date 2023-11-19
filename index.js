@@ -33,6 +33,8 @@ app.post(`/registerUser`, async (req, res) => {
         return;
       }
     }
+    res.sendStatus(400);
+    return;
   
   } else {
     for (groupUserObj of registeredUsers) {
