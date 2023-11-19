@@ -94,17 +94,17 @@ For this deliverable I added backend endpoints that receives product and group i
 For this deliverable I stored the product information in the database.
 
 - **MongoDB Atlas database created** - done!
-- **Endpoints for data** - My stubbed out endpoints now process the data and send it to Mongo. I access the database through functions in `database.js`.
-- **Stores data in MongoDB** - Stores the user and order information in the database.
+- **Endpoints for data** - Stubbed out endpoints now process the data and send it to Mongo. I access the database through functions in `database.js`.
+- **Stores data in MongoDB** - Stores the user and order information in the database. Additionally associates both users and orders to a groupID randomly given.
 
 ## Login deliverable
 
 For this deliverable I associate the products and groups with the logged in user.
 
-- **User registration** - Creates a new account in the database. Duplicate emails are not allowed.
-- **existing user** - Stores the users and their respective groups in the database.
-- **Use MongoDB to store credentials** - Stores both user and their groups/products.
-- **Restricts functionality** - You cannot use the web application until you have logged in or registered and received a valid authToken. AuthTokens are deleted when the user logs out.
+- **User registration** - Creates a new account in the database with an associated group. Duplicate emails are not allowed.
+- **Existing user** - Stores the users and their respective groups in the database.
+- **Use MongoDB to store credentials** - Stores both user and their groups/products. Emails, passwords, groupIDs, etc. are stored.
+- **Restricts functionality** - You cannot use the web application until you have logged in or registered and received a valid authToken. AuthTokens are deleted when the user logs out. If there is an invalid authToken or group, the web app sends you back to index.html.
 
 ## WebSocket deliverable (yeah I don't know what the idea behind this deliverable stuff is, but I did not do anything!)
 

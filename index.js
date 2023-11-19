@@ -66,7 +66,6 @@ app.post(`/login`,async (req, res) => {
 
 app.post(`/logout`, async (req, res) => {
   const authTokenID = req.body.authToken;
-  console.log(req.body);
   await DB.deleteAuthToken(authTokenID);
   res.send();
 });
