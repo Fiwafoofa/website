@@ -10,7 +10,7 @@ const historySelectEmp = "historyTasksSelectEmployee";
 const historyTableBodyIDEmp = "historyTasksTableBodyEmployee";
 const tableIgnoreProps = ['customer', 'otherNotes', 'startTime', 'endTime', 'groupID', '_id'];
 
-async function validateAuthToken(authToken) {
+async function validateCredentials(authToken, groupID) {
     let response = await fetch(`/validateAuthToken`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -21,22 +21,30 @@ async function validateAuthToken(authToken) {
         window.location.href = `index.html`;
         return false;
     }
+
+    response = await fetch(`/validateGroup`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({groupID: groupID})
+    });
+    if (response.status === 400) {
+        alert("Not Authorized");
+        window.location.href = `index.html`;
+        return false;
+    }
+    
     return true;
 }
 
 // VALIDATE USER
 const urlParams = new URLSearchParams(window.location.search);
 const groupID = urlParams.get('groupID');
-if (groupID === undefined || groupID === null || groupID === "") {
-    alert("Not Authorized");
-    window.location.href = `index.html`;
-}
 const authToken = urlParams.get('authToken');
-if (authToken === undefined || authToken === null || authToken === "") {
+if (groupID === undefined || groupID === null || groupID === "" || authToken === undefined || authToken === null || authToken === "") {
     alert("Not Authorized");
     window.location.href = `index.html`;
 }
-validateAuthToken(authToken).then(result => {
+validateCredentials(authToken, groupID).then(result => {
     console.log("Valid Auth");
 });
 

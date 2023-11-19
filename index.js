@@ -27,7 +27,7 @@ app.post(`/registerUser`, async (req, res) => {
             return;
           }
         }
-        await DB.addAuthToken(authTokenID);
+        await DB.addAuthToken({authToken: authTokenID});
         await DB.addUser(req.body);
         res.json({groupID: req.body.groupID, authToken: authTokenID});
         return;
@@ -43,7 +43,7 @@ app.post(`/registerUser`, async (req, res) => {
     }
 
     req.body.groupID = uuid.v4();
-    await DB.addAuthToken(authTokenID);
+    await DB.addAuthToken({authToken: authTokenID});
     await DB.addUser(req.body);
     res.json({groupID: req.body.groupID, authToken: authTokenID});
     
@@ -75,6 +75,16 @@ app.post(`/validateAuthToken`, async (req, res) => {
   let authToken = req.body.authToken;
   authToken = await DB.getAuthToken(authToken)
   if (authToken) {
+    res.sendStatus(200);
+    return;
+  }
+  res.sendStatus(400);
+});
+
+app.post(`/validateGroup`, async (req, res) => {
+  let groupID = req.body.groupID;
+  groupID = await DB.getGroupID(groupID);
+  if (groupID) {
     res.sendStatus(200);
     return;
   }

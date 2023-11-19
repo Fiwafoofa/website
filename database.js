@@ -31,6 +31,10 @@ function getUser(email) {
   return users.findOne({ email: email });
 }
 
+function getGroupID(groupID) {
+  return users.findOne({ groupID: groupID });
+}
+
 async function addAuthToken(authToken) {
   return await authTokens.insertOne(authToken);
 }
@@ -65,4 +69,4 @@ async function updateOrder(orderID, orderObj) {
       customer: orderObj.customer, otherNotes: orderObj.otherNotes, orderID: orderObj.orderID}});
 } 
 
-module.exports = { addUser, findAllUsers, getUser, addAuthToken, getAuthToken, addOrder, getAllOrders, updateOrder, getOrder, deleteAuthToken };
+module.exports = { addUser, findAllUsers, getUser, addAuthToken, getAuthToken, addOrder, getAllOrders, updateOrder, getOrder, deleteAuthToken, getGroupID };

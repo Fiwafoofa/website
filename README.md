@@ -104,7 +104,7 @@ For this deliverable I associate the products and groups with the logged in user
 - **User registration** - Creates a new account in the database. Duplicate emails are not allowed.
 - **existing user** - Stores the users and their respective groups in the database.
 - **Use MongoDB to store credentials** - Stores both user and their groups/products.
-- **Restricts functionality** - You cannot use the web application until you have logged in. This is restricted on the frontend only. 
+- **Restricts functionality** - You cannot use the web application until you have logged in or registered and received a valid authToken. AuthTokens are deleted when the user logs out.
 
 ## WebSocket deliverable (yeah I don't know what the idea behind this deliverable stuff is, but I did not do anything!)
 
