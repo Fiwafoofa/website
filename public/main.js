@@ -50,8 +50,6 @@ validateCredentials(authToken, groupID).then(result => {
 
 const groupIDTag = document.getElementById('group-id');
 groupIDTag.innerText = `Group ID: ${groupID}`;
-
-
 // const dataSelectHTML = `<td><a onclick="fillModal(orderID)" href="#" class="link-info" data-toggle="modal" data-target="#productModal">Details</a></td>`;
 
 function updateOrders() {
@@ -171,7 +169,6 @@ function searchOrder() {
 
 async function startTask() {
     let orderID = document.getElementById("orderIDInput").value;
-    console.log("----------------");
     console.log(orderID);
     console.log(upcomingTasks);
     let task = upcomingTasks.find((obj) => {
@@ -185,6 +182,7 @@ async function startTask() {
     }
     task.startTime = new Date();
     document.getElementById("startTime").innerText = task.startTime;
+    socket.send(JSON.stringify({groupID: groupID, message : "ADDING TASK"}));
     try {
         await fetch('/updateTask', {
             method: 'PUT',
@@ -207,6 +205,7 @@ async function endTask() {
     }
     task.endTime = new Date();
     document.getElementById("endTime").innerText = task.endTime;
+    socket.send(JSON.stringify({groupID: groupID, message : "ADDING TASK"}));
     try {
         await fetch('/updateTask', {
             method: 'PUT',
@@ -240,12 +239,13 @@ async function createTask() {
         dueDate : dueDateInput, customer : customerInput, otherNotes : otherNotesInput, groupID: groupID, startTime: null, endTime: null};
 
     try {
+        socket.send(JSON.stringify({groupID: groupID, message : "ADDING TASK"}));
         let res = await fetch('/addTask', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(task)
         });
-        if (res.status === 400) {
+        if (!res.ok) {
             alert("Duplicate OrderID");
         }
     } catch {
@@ -329,6 +329,8 @@ async function loadData() {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({groupID: groupID})
     });
+
+
     upcomingTasks = await response.json();
     upcomingTasks = upcomingTasks.futureTasks;
     console.log(upcomingTasks)
@@ -376,13 +378,40 @@ async function loadData() {
     }
 }
 
-async function updateWebpage() {
+// CONFIGURE WEBSOCKET
+const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+const socket = new WebSocket(`${protocol}://${window.location.host}`);
+socket.onopen = (event) => {
+    console.log('WebSocket connection opened'); 
+    socket.send(JSON.stringify({groupID: groupID, message: "ADDING CONNECTION"}));
+};
 
-    const delay = ms => new Promise(res => setTimeout(res, ms));
-    while (true) {
+socket.onclose = (event) => {
+    console.log('WebSocket connection closed:', event.code, event.reason); 
+};
+
+socket.onerror = (error) => {
+    console.error('WebSocket error:', error);
+};
+
+socket.onmessage = (event) => {
+    // console.log('Received message:', event.data);
+    let object = JSON.parse(event.data);
+    console.log(object);
+    if (object.message == "UPDATE TASKS") {
         loadData();
-        await delay(5000);
     }
-}
+};
 
-updateWebpage();
+loadData();
+
+
+// async function updateWebpage() {
+//     const delay = ms => new Promise(res => setTimeout(res, ms));
+//     while (true) {
+//         loadData();
+//         await delay(10000);
+//     }
+// }
+
+// updateWebpage();

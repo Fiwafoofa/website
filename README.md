@@ -106,14 +106,15 @@ For this deliverable I associate the products and groups with the logged in user
 - **Use MongoDB to store credentials** - Stores both user and their groups/products. Emails, passwords, groupIDs, etc. are stored.
 - **Restricts functionality** - You cannot use the web application until you have logged in or registered and received a valid authToken. AuthTokens are deleted when the user logs out. If there is an invalid authToken or group, the web app sends you back to index.html.
 
-## WebSocket deliverable (yeah I don't know what the idea behind this deliverable stuff is, but I did not do anything!)
+## WebSocket deliverable
 
-For this deliverable I used webSocket to update the product and group information on the frontend in realtime.
+For this deliverable I used webSocket to update the product information on the frontend in realtime without constantly requesting the 
+web server for information. When someone in the group adds an order, it sends that notice to the websocket and the websocket notifies all the connections in the same group to update the product information.
 
-- **Backend listens for WebSocket connection** - done!
-- **Frontend makes WebSocket connection** - done!
-- **Data sent over WebSocket connection** - done!
-- **WebSocket data displayed** - Product and group information display in realtime.
+- **Backend listens for WebSocket connection** - done! In peerProxy.js
+- **Frontend makes WebSocket connection** - done! In main.js
+- **Data sent over WebSocket connection** - done! In peerProxy.js and and main.js
+- **WebSocket data displayed** - Product information table gets updated when somebody updates or adds an order.
 
 ## React deliverable (yeah I don't know what the idea behind this deliverable stuff is, but I did not do anything!)
 

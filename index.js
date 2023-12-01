@@ -1,15 +1,16 @@
 const express = require('express');
-const app = express();
 const DB = require('./database.js');
 const uuid = require('uuid');
 const bcrypt = require('bcrypt');
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
+const { peerProxy } = require('./peerProxy.js');
 
+const app = express();
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
 app.use(express.json());
 app.use(express.static('public'));
-app.use(cookieParser());
+
 
 app.post(`/registerUser`, async (req, res) => {
   req.body.password = await bcrypt.hash(req.body.password, 10);
@@ -145,7 +146,9 @@ app.use((req, res) => {
 });
 
 
-app.listen(port, () => {
+const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+peerProxy(httpService)
 
