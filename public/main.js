@@ -395,23 +395,10 @@ socket.onerror = (error) => {
 };
 
 socket.onmessage = (event) => {
-    // console.log('Received message:', event.data);
     let object = JSON.parse(event.data);
-    console.log(object);
     if (object.message == "UPDATE TASKS") {
         loadData();
     }
 };
 
 loadData();
-
-
-// async function updateWebpage() {
-//     const delay = ms => new Promise(res => setTimeout(res, ms));
-//     while (true) {
-//         loadData();
-//         await delay(10000);
-//     }
-// }
-
-// updateWebpage();

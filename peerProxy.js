@@ -1,10 +1,7 @@
 const { WebSocketServer } = require('ws');
-const uuid = require('uuid');
-
 
 function peerProxy(httpServer) {
   // Create a websocket object
-    console.log("HERE!");
     const wss = new WebSocketServer({ noServer: true });
 
     // Handle the protocol upgrade from HTTP to WebSocket
@@ -17,14 +14,14 @@ function peerProxy(httpServer) {
     let connections = [];
     wss.on('connection', (ws) => {
         
-        console.log('WebSocket connection established');
+        // console.log('WebSocket connection established');
         // Handle messages from the WebSocket client
         ws.on('message', (message) => {
-            console.log(`Received message: ${message}`);
-            ws.send(`Server received your message: ${message}`);
+            // console.log(`Received message: ${message}`);
+            // ws.send(`Server received your message: ${message}`);
 
             let object = JSON.parse(message);
-            console.log(object);
+            // console.log(object);
 
             if (object.message === "ADDING CONNECTION") {
                 let connection = {groupID: object.groupID, ws: ws};
@@ -37,11 +34,7 @@ function peerProxy(httpServer) {
                     connection.ws.send(JSON.stringify({message: "UPDATE TASKS"}));
                 });
             }
-
-
         });
-
-        
 
         // Log WebSocket errors
         ws.on('error', (error) => {
@@ -49,14 +42,13 @@ function peerProxy(httpServer) {
         });
 
         // Log WebSocket close events
-        ws.on('close', (code, reason) => {
-            console.log(`WebSocket closed: code ${code}, reason ${reason}`);
-        });
+        // ws.on('close', (code, reason) => {
+        //     console.log(`WebSocket closed: code ${code}, reason ${reason}`);
+        // });
     });
 }
 
 module.exports = { peerProxy };
-
 
 // const wss = new WebSocketServer({ noServer: true });
 
