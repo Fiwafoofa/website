@@ -10,9 +10,12 @@ const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
 app.use(express.json());
 app.use(express.static('public'));
+const apiRouter = express.Router();
+app.use(`/api`, apiRouter);
 
 
-app.post(`/registerUser`, async (req, res) => {
+apiRouter.post(`/registerUser`, async (req, res) => {
+  console.log("REGISTERING USER");
   req.body.password = await bcrypt.hash(req.body.password, 10);
   const registeredUsers = await DB.findAllUsers();
   let authTokenID = uuid.v4();
@@ -28,7 +31,7 @@ app.post(`/registerUser`, async (req, res) => {
             return;
           }
         }
-        await DB.addAuthToken({authToken: authTokenID});
+        // await DB.addAuthToken({authToken: authTokenID});
         await DB.addUser(req.body);
         res.json({groupID: req.body.groupID, authToken: authTokenID});
         return;
@@ -46,7 +49,7 @@ app.post(`/registerUser`, async (req, res) => {
     }
 
     req.body.groupID = uuid.v4();
-    await DB.addAuthToken({authToken: authTokenID});
+    // await DB.addAuthToken({authToken: authTokenID});
     await DB.addUser(req.body);
     res.json({groupID: req.body.groupID, authToken: authTokenID});
     
@@ -54,12 +57,12 @@ app.post(`/registerUser`, async (req, res) => {
   }
 });
 
-app.post(`/login`,async (req, res) => {
+apiRouter.post(`/login`,async (req, res) => {
   const user = await DB.getUser(req.body.email);
   if (user) {
     if (await bcrypt.compare(req.body.password, user.password)) {
       let authTokenID = uuid.v4();
-      await DB.addAuthToken({authToken: authTokenID});
+      // await DB.addAuthToken({authToken: authTokenID});
       res.json({groupID: user.groupID, role: user.role, authToken: authTokenID});
       return;
     }
@@ -67,15 +70,15 @@ app.post(`/login`,async (req, res) => {
   res.status(401).send({ msg: 'Unauthorized' });
 });
 
-app.post(`/logout`, async (req, res) => {
+apiRouter.post(`/logout`, async (req, res) => {
   const authTokenID = req.body.authToken;
-  await DB.deleteAuthToken(authTokenID);
+  // await DB.deleteAuthToken(authTokenID);
   res.send();
 });
 
-app.post(`/validateAuthToken`, async (req, res) => {
+apiRouter.post(`/validateAuthToken`, async (req, res) => {
   let authToken = req.body.authToken;
-  authToken = await DB.getAuthToken(authToken)
+  // authToken = await DB.getAuthToken(authToken)
   if (authToken) {
     res.sendStatus(200);
     return;
@@ -83,7 +86,7 @@ app.post(`/validateAuthToken`, async (req, res) => {
   res.sendStatus(400);
 });
 
-app.post(`/validateGroup`, async (req, res) => {
+apiRouter.post(`/validateGroup`, async (req, res) => {
   let groupID = req.body.groupID;
   groupID = await DB.getGroupID(groupID);
   if (groupID) {
@@ -93,17 +96,17 @@ app.post(`/validateGroup`, async (req, res) => {
   res.sendStatus(400);
 });
 
-app.post(`/addTask`, async (req, res) => {
+apiRouter.post(`/addTask`, async (req, res) => {
   let order = req.body;
   let dbOrder = await DB.getOrder(order.orderID, order.groupID);
   if (dbOrder) {
     res.sendStatus(400);
     return;
-  }
+  };
   return await DB.addOrder(order);
 });
 
-app.post(`/getPastTasks`, async (req, res) => {
+apiRouter.post(`/getPastTasks`, async (req, res) => {
   let groupID = req.body.groupID;
   const tasks = await DB.getAllOrders(groupID); 
   let todayDate = new Date();
@@ -118,7 +121,7 @@ app.post(`/getPastTasks`, async (req, res) => {
   res.send({pastTasks: pastTasks});
 });
 
-app.post(`/getFutureTasks`, async (req, res) => {
+apiRouter.post(`/getFutureTasks`, async (req, res) => {
   let groupID = req.body.groupID;
   const tasks = await DB.getAllOrders(groupID); 
   let todayDate = new Date();
@@ -133,7 +136,7 @@ app.post(`/getFutureTasks`, async (req, res) => {
   res.send({futureTasks: futureTasks});
 });
 
-app.put(`/updateTask`, async (req, res) => {
+apiRouter.put(`/updateTask`, async (req, res) => {
   let orderID = req.body.orderID;
   let orderObj = req.body;
   await DB.updateOrder(orderID, orderObj);
@@ -141,9 +144,9 @@ app.put(`/updateTask`, async (req, res) => {
   res.send();
 });
 
-app.use((req, res) => {
-  res.sendFile('index.html', { root: 'public' });
-});
+// app.use((req, res) => {
+//   res.sendFile('index.html', { root: '../src' });
+// });
 
 
 const httpService = app.listen(port, () => {

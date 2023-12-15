@@ -116,14 +116,11 @@ web server for information. When someone in the group adds an order, it sends th
 - **Data sent over WebSocket connection** - done! In peerProxy.js and and main.js
 - **WebSocket data displayed** - Product information table gets updated when somebody updates or adds an order.
 
-## React deliverable (yeah I don't know what the idea behind this deliverable stuff is, but I did not do anything!)
+## React deliverable
 
 For this deliverable I converted the application over to use Vue. I know it is supposed to use React, but the instructor said I could use Vue because I already have extensive experience with React.
 
 - **Bundled and transpiled** - done!
-- **Components** - Login, product list, groups are all components.
-- **Router** - Routing between login and voting components.
-- **Hooks** - Vue uses class properties instead of `UseState` to track changes in products/groups state.
-
-
-**Note to self: Products should be associated with groups, and people should be associated with group. People join groups, products are stored in groups, people see products of a group.
+- **Components** - Login, manager page, and employee page are all components.
+- **Router** - Routing between login, employee, and manager components.
+- **Hooks** - The components uses `useState` and `useEffect` and my quote uses `useEffect`.

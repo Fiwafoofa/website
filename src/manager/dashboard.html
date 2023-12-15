@@ -7,30 +7,160 @@
     <link rel="icon" href="favicon.ico" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="main.css">
-    
-    <title>P Tracker</title>
+
+    <title>Dashboard</title>
 </head>
 <body>
-    <header>    
-        <nav class="navbar navbar-dark" style="background-color: #292b2c;">
+    <header>
+        <nav class="navbar navbar-dark">
             <h1 class="heading"><img src="logo.png" class="logo"> P Tracker</h1>
             
             <ul class="nav nav-pills nav-fill justify-content-end">
+
+                <!-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" 
+                    aria-haspopup="true" aria-expanded="false">More</a>
+                    <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#employeeModal">Person 1</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#employeeModal">Person 2</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#employeeModal">Person 3</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#inviteModal">Invite</a>
+                    </div>
+                </li> -->
                 <li class="nav-item" style="color: white;" id="group-id"> Group ID: xxxxxxxxxxxxxxxxxxxxxxxxxxxx</li>
                 <li class="nav-item">
                     <a href="index.html" class="nav-link btn btn-outline-light justify-content-end" onclick="logout()">Logout</a>   
                 </li>
             </ul>
         </nav>
-    </header>
-    <main>
+
+        <!-- <div class="modal fade" id="employeeModal" tabindex="-1" role="dialog" aria-labelledby="employeeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="employeeModalLabel">Employee Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body table-scroll">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Product Name</th>
+                                    <th></th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="historyTasksTableBodyEmployee">
+                                
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- <div class="modal fade" id="inviteModal" tabindex="-1" role="dialog" aria-labelledby="inviteModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="inviteModalLabel">Invitation Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label class="form-label" for="email-input">Email address</label>
+                                <input type="email" id="email-input" class="form-control" />
+                               
+                            </div>
+                                            
         
+                            <div class="form-group">
+                                <label for="textMessage1">Additional Message:</label>
+                                <textarea class="form-control" id="textMessage1"></textarea>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+    </header>
+
+    <main>
+        <div id="summary" class="container table-responsive">
+            <br>
+            <h2>Summary</h2>
+            <br>
+            <div class="container container-null table-scroll">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Product Name</th>
+                            <th>Due Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="summaryTableBody">
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+
+        <div id="createTask" class="container">
+            <h2>Create Task</h2>
+            <br>
+            <div class="container container-null">
+                <div class="form-group">
+                    <label>Order ID:</label>
+                    <input id="orderIDInputCreate" type="text" placeholder="Order ID">
+                </div>
+                                
+                <div class="form-group">
+                    <label>Product Name:</label>
+                    <input id="productNameInputCreate" type="text" placeholder="Product Name">    
+                </div>
+                
+                <div class="form-group">
+                    <label>Due Date:</label>
+                    <input id="dueDateInputCreate" type="datetime-local" name="varDatetime" id="datetime" />
+                </div>
+                
+                <div class="form-group">
+                    <label>Customer:</label>
+                    <input id="customerInputCreate" type="text" placeholder="Customer">
+                </div>
+
+                <div class="form-group">
+                    <label for="notesInputCreate">Other Notes:</label>
+                    <textarea class="form-control" id="notesInputCreate"></textarea>
+                </div>
+                <button onclick="createTask()" type="button" class="btn btn-primary">Submit</button>
+            </div>
+                          
+        </div>
+
         <div id="searchTask" class="container">
             <h2>Search Task</h2>
             
             <div class="container container-null" id="searchButtonEmployee">
                 <input type="text" id="productSearch" placeholder="Order ID" />
-                <button onclick="searchOrder()" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#productModal">Search</button>
+                <button onclick="searchOrder()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#productModal">Search</button>
             </div>
             
             
@@ -74,7 +204,6 @@
                                 <menu>
                                     <li id="startTime">Start Time: &lt;0&gt;</li>
                                     <li id="endTime">End Time: &lt;0&gt;</li>
-                                    <!-- <li id="totalTime">Total Time: &lt;0&gt; minutes</li> -->
                                 </menu>
                             </form>
                         </div>
@@ -109,11 +238,9 @@
                                     </select>
                                 </form>
                             </th>
-                            
                         </tr>
                     </thead>
                     <tbody id="upcomingTasksTableBody">
-
                     </tbody>
                 </table>
             </div>
@@ -144,17 +271,17 @@
                         </tr>
                     </thead>
                     <tbody id="historyTasksTableBody">
-                        
                     </tbody>
                 </table>
             </div>
         </div>
     </main>
-    <footer class="bg-dark text-center text-lg-start footer-item">
+
+    <footer class="bg-dark text-center text-lg-start">
         <div class="container p-4 footer-item">
             <div class="row">
                 <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                    <h5 style="color:blue">About</h5>
+                    <h5 class="footer-header">About</h5>
                     <p>
                         This product tracking application will allow organizations 
                         to digitally create products with information about production such as materials and 
@@ -164,10 +291,11 @@
                     </p>
                 </div>
                 <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                    <h5 style="color:blue">Quote</h5>
+                    <h5 class="footer-header">Quote</h5>
 
                     <p id="quote">
-                        
+                        “Computers are incredibly fast, accurate, and stupid. Human beings are incredibly slow, 
+                        inaccurate, and brilliant. Together they are powerful beyond imagination.”- Albert Einstein
                     </p>
                 </div>
             </div>
@@ -177,7 +305,7 @@
             <a href="employee.html"> &bull; Employee</a>
             <a href="dashboard.html"> &bull; Manager Dashboard</a> 
         </div>
-        
+       
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
