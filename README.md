@@ -121,6 +121,6 @@ web server for information. When someone in the group adds an order, it sends th
 For this deliverable I converted the application over to use Vue. I know it is supposed to use React, but the instructor said I could use Vue because I already have extensive experience with React.
 
 - **Bundled and transpiled** - done!
-- **Components** - Login, manager page, and employee page are all components.
-- **Router** - Routing between login, employee, and manager components.
+- **Components** - Quote, login, manager page, and employee page are all components.
+- **Router** - Routing between login, employee, and manager components located within my `App.jsx`.
 - **Hooks** - The components uses `useState` and `useEffect` and my quote uses `useEffect`.
